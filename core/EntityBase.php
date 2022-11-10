@@ -26,7 +26,7 @@
             $query = $this->db->query("SELECT * FROM $this->table ORDER BY id DESC");
 
             while($row = $query->fetch_object()) {
-                $resultSet[]=$row;
+                $resultSet=$row;//[]=$row;
             }
 
             return $resultSet;
