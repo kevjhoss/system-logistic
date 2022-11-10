@@ -6,7 +6,7 @@
         // DEFINIMOS EL CONSTRUCTOR EL CUAL NOS PERMITE PODER INSTANCIAR NUESTRAS PROPIEDADES DENTRO DEL MISMO OBJETO
         public function __construct(){
             $db_config = require_once './config/database.php';
-            $this->driver = $db_config["driver"];
+            $this->driver = $db_config["driver"] ?? '';
             $this->host = $db_config["host"];
             $this->user = $db_config["user"];
             $this->pass = $db_config["pass"];
