@@ -131,43 +131,38 @@ $(document).ready(function() {
       $(element).addClass('is-valid');
     },
     submitHandler: function(form) {
-      let datos = $(form).serializeArray();
-      $.ajax({
-        method: $(form).attr('method'),
-        data: datos,
-        url: 'index.php?controller=Login&action=login',
-        dataType: 'html' || 'json',
-        async: false,
-        success: function(data) {
-          const dataJson = data.slice(data.search(/{"/))
-          let result = JSON.parse(dataJson);
-          console.log(result);
-          console.log(typeof (result));
-          if (result.status == "ok") {
-            Toast.fire({
-              icon: 'success',
-              title: 'Success',
-              text: 'Bienvenid@ ' + result.result[0].name + ' !!!'
-            }).then(function() {
-              window.location = 'index.php?controller=Index&action=index';
-            })
-          };
-          if (result.status == "passBad") {
-            Toast.fire({
-              icon: 'error',
-              title: 'Error',
-              text: 'Password incorrecto'
-            })
-          };
-          if (result.status == "emailBad") {
-            Toast.fire({
-              icon: 'error',
-              title: 'Error',
-              text: 'Email no existe'
-            })
-          }
-        }
-      })
+      const sendDatas = async () => {
+        const dataFormulario = new FormData(form);
+        const datas = await fetch("index.php?controller=Login&action=login", {
+          method: "POST",
+          body: dataFormulario
+        });
+        const data = await datas.json();
+        if (data.status === "ok") {
+          Toast.fire({
+            icon: 'success',
+            title: 'Success',
+            text: 'Bienvenid@ ' + data.result[0].name + ' !!!'
+          }).then(() => window.location = 'index.php?controller=Index&action=index');
+        };
+
+        if (data.status === "passBad") {
+          Toast.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Password incorrecto'
+          })
+        };
+
+        if (data.status === "emailBad") {
+          Toast.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Email no existe'
+          })
+        };
+      };
+      sendDatas()
     }
   })
 
