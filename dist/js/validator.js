@@ -66,6 +66,7 @@ $(document).ready(function() {
       },
       submitHandler: function (form) {
         var datos = $(form).serializeArray();
+        console.log(datos);
         //console.log(datos);
         //alert( "Form successful submitted!" );
         //form.submit();

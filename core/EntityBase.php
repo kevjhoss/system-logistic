@@ -28,8 +28,7 @@
             while($row = $query->fetch_object()) {
                 $resultSet[]=$row;
             }
-            //$resultSet = 10;
-
+            //$resultSet
             return '';
         }
 
@@ -50,7 +49,7 @@
                 $resultSet[]=$row;
             
             }
-
+            //return $resultSet;
             return '';
         }
 
