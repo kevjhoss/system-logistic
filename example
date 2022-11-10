@@ -1,0 +1,76 @@
+controller
+
+public function update(){
+  if(isset($_POST["id"])){
+      $user=new User($this->adapter);
+      $user->setId($_POST["id"]);
+      $user->setName($_POST["name"]);
+      $user->setLastname($_POST["lastname"]);
+      $user->setEmail($_POST["email"]);
+      $user->setPassword($_POST["password"]);
+      $save=$user->save();
+  }
+  die(json_encode($save));
+  //$this->redirect("Users","index");
+}
+
+
+
+
+
+
+
+
+
+
+
+$(".update").on('click', function(e){
+      e.preventDefault();
+      var id = $(this).attr('data-id');
+      var controller = $(this).attr('data-controller');
+      var id = $(this).attr('data-id');
+      var name = $(this).attr('data-name');
+      var lastname = $(this).attr('data-lastname');
+      var email = $(this).attr('data-email');
+      var password = $(this).attr('data-password');
+      
+      Swal.fire({
+            icon: 'question',
+            html: `
+            <form method="post" id="updateUser">
+              <div class="form-group">
+                <label for="name">Nombre</label>
+                <input type="text" class="form-control" value="${name}" name="name" id="name" placeholder="Ingrese su nombre">
+              </div>
+              <div class="form-group">
+                <label for="lastname">Apellido</label>
+                <input type="text" class="form-control" value="${lastname}" name="lastname" id="lastname" placeholder="Ingrese su apellido">
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" value="${email}" name="email" id="email" placeholder="Ingrese su email">
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" value="${password}" name="password" id="password" placeholder="Ingrese su password">
+              </div>
+              <input type="hidden" class="form-control" value="${id}" name="password" id="${id}" placeholder="Ingrese su password">
+
+            </form>
+            `,
+            confirmButtonText: '<button type="submit" value="enviar" class="btn btn-primary">Enviar  <i class="fa-regular fa-paper-plane"></i></button>',
+            showDenyButton: true,
+            denyButtonText: 'Descartar',
+            title: 'Modificar Usuario'
+          }).then((result, form) => {
+            if (result.isConfirmed) {
+              Toast.fire({
+                icon: 'success',
+                cancelButtonText: 'Cancelar',
+                title: 'Se edito correctamente el registro ' + id
+              })
+            }
+        })
+
+
+    })
