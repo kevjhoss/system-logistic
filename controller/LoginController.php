@@ -9,7 +9,7 @@ class LoginController extends ControllerBase{
     }
      
     public function index(){
-        $this->view("loginIndex",[]);
+        $this->view("loginIndex","");
     }
 
     public function login(){
