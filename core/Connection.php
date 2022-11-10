@@ -7,11 +7,11 @@
         public function __construct(){
             $db_config = require_once './config/database.php';
             $this->driver = $db_config["driver"] ?? '';
-            $this->host = $db_config["host"];
-            $this->user = $db_config["user"];
-            $this->pass = $db_config["pass"];
-            $this->database = $db_config["database"];
-            $this->charset = $db_config["charset"];
+            $this->host = $db_config["host"] ?? '';
+            $this->user = $db_config["user"] ?? '';
+            $this->pass = $db_config["pass"] ?? '';
+            $this->database = $db_config["database"] ?? '';
+            $this->charset = $db_config["charset"] ?? '';
         }
         // METODO QUE VAMOS A UTILIZAR PARA REALIZAR LA CONEXION
         public function connect(){
