@@ -29,7 +29,7 @@ class LoginController extends ControllerBase{
                 //var_dump($result);
                 $resultSet = array("result" => $result, "status" => "ok");
             } else {
-                $resultSet = array("result" => $result, "status" => "$result");
+                $resultSet = array("result" => $result, "status" => "$result[0]");
             }
         } else {
             $resultSet = array("status" => "emailBad");
