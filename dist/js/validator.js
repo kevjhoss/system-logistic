@@ -139,7 +139,7 @@ $(document).ready(function() {
         });
         const data = await datas.text();
         const result = data.slice(data.search(/{"/));
-        console.log(result.status)
+        console.log(result)
         if (result.status == "ok") {
           Toast.fire({
             icon: 'success',
