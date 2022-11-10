@@ -24,7 +24,7 @@ class UsersController extends ControllerBase{
     }
 
     public function userForm(){
-        $this->view("userForm","");
+        $this->view("userForm",[]);
     }
      
     public function create(){
