@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Location" content="http://test-logistica-production.up.railway.app/index.php?controller=Login&action=index"/>
+  <meta http-equiv="Location" content="https://system-logistic-production.up.railway.app/index.php?controller=Login&action=index"/>
   <title>AdminLTE 3 | Blank Page</title>
 
   <!-- Google Font: Source Sans Pro -->
