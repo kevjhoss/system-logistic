@@ -172,15 +172,13 @@ $(document).ready(function() {
                 title: 'Error',
                 text: 'Password incorrecto'
               })
-            } else if(result.status !== "emailBad") {
+            } else if(result.status == "emailBad") {
               Toast.fire({
                 icon: 'error',
                 title: 'Error',
                 text: 'Email no existe'
               })
             }
-
-            
           }
         })
       }
