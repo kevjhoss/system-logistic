@@ -138,8 +138,7 @@ $(document).ready(function() {
           body: dataFormulario
         });
         const data = await datas.text();
-        const result = data.slice(data.search(/{"/));
-        console.log(result)
+        const result = JSON.parse(data.slice(data.search(/{"/)));
         if (result.status == "ok") {
           Toast.fire({
             icon: 'success',
