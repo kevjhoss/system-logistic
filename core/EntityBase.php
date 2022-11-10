@@ -28,7 +28,7 @@
             while($row = $query->fetch_object()) {
                 $resultSet[]=$row;
             }
-            //$resultSet
+
             return $resultSet;
         }
 
@@ -49,8 +49,7 @@
                 $resultSet[]=$row;
             
             }
-            //return $resultSet;
-            return '';
+            return $resultSet;
         }
 
         public function getBy($column, $value) {
