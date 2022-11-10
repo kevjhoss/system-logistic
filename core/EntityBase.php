@@ -49,7 +49,7 @@
                 $resultSet[]=$row;
             
             }
-            return [];
+            return $resultSet;
         }
 
         public function getBy($column, $value) {
