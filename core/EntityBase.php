@@ -29,7 +29,7 @@
                 $resultSet=$row;//[]=$row;
             }
 
-            return $resultSet;
+            return $resultSet ?? '';
         }
 
         public function getById($id) {
