@@ -153,8 +153,9 @@ $(document).ready(function() {
           dataType: 'html' || 'json',
           async: false,
           success: function(data) {
-            console.log(data);
-            var result = data;
+            const json = data.slice(data.search(/{"/))
+            console.log(json);
+            var result = json;
             console.log(typeof(result));
             if (result.status == "ok") {
                Toast.fire({
