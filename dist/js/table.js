@@ -8,8 +8,7 @@ $(function () {
       "searching": true,
       "buttons": [
         'copy', 'excel', 'pdf', 'colvis'
-      ]
-      
+      ]     
 //       "initComplete": function(settings, json) {
 //         alert( 'DataTables has finished its initialisation.' );
 //       }
