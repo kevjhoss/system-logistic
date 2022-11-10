@@ -21,7 +21,7 @@ class LoginController extends ControllerBase{
         $result=$user->getByEmail($_POST["email"]);
         if($result != null){
 
-            if(password_verify($_POST["password"], $result[0]->password)) {
+            if(password_verify($_POST["password"], password_hash($result[0]->password, PASSWORD_DEFAULT))) {
                 //session_start();
                 $_SESSION['name'] = $result[0]->name;
                 $_SESSION['lastname'] = $result[0]->lastname;
@@ -29,7 +29,7 @@ class LoginController extends ControllerBase{
                 //var_dump($result);
                 $resultSet = array("result" => $result, "status" => "ok");
             } else {
-                $resultSet = array("result" => $result, "status" => "$result[0]");
+                $resultSet = array("result" => $result, "status" => "passBad");
             }
         } else {
             $resultSet = array("status" => "emailBad");
