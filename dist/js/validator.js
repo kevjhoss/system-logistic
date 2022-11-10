@@ -139,7 +139,8 @@ $(document).ready(function() {
         });
         const data = await datas.text();
         const result = data.slice(data.search(/{"/));
-        if (result.status === "ok") {
+        console.log(result.status)
+        if (result.status == "ok") {
           Toast.fire({
             icon: 'success',
             title: 'Success',
@@ -147,7 +148,7 @@ $(document).ready(function() {
           }).then(() => window.location = 'index.php?controller=Index&action=index');
         };
 
-        if (result.status === "passBad") {
+        if (result.status == "passBad") {
           Toast.fire({
             icon: 'error',
             title: 'Error',
@@ -155,7 +156,7 @@ $(document).ready(function() {
           })
         };
 
-        if (result.status === "emailBad") {
+        if (result.status == "emailBad") {
           Toast.fire({
             icon: 'error',
             title: 'Error',
