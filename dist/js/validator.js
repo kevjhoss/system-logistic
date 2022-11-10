@@ -150,7 +150,7 @@ $(document).ready(function() {
           method: $(form).attr('method'),
           data: datos,
           url: 'index.php?controller=Login&action=login',
-          dataType: 'json',
+          dataType: 'html' || 'json',
           async: false,
           success: function(data) {
             console.log(data);
