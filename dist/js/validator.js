@@ -165,13 +165,13 @@ $(document).ready(function() {
                   window.location = 'index.php?controller=Index&action=index';
               })
               
-            } else if(result.status != "passBad") {
+            } else if(result.status == "passBad") {
               Toast.fire({
                 icon: 'error',
                 title: 'Error',
                 text: 'Password incorrecto'
               })
-            } else if(result.status == "emailBad") {
+            } else if(result.status != "emailBad") {
               Toast.fire({
                 icon: 'error',
                 title: 'Error',
