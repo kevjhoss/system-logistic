@@ -21,8 +21,7 @@ class LoginController extends ControllerBase{
         $result=$user->getByEmail($_POST["email"]);
         if($result != null){
 
-            //if(password_verify($_POST["password"], $result[0]->password)) {
-            if (true) {
+            if(password_verify($_POST["password"], $result[0]->password)) {
                 //session_start();
                 $_SESSION['name'] = $result[0]->name;
                 $_SESSION['lastname'] = $result[0]->lastname;
