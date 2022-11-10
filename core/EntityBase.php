@@ -51,7 +51,7 @@
             
             }
 
-            return $resultSet;
+            return '';
         }
 
         public function getBy($column, $value) {
