@@ -137,16 +137,17 @@ $(document).ready(function() {
           method: "POST",
           body: dataFormulario
         });
-        const data = await datas.json();
-        if (data.status === "ok") {
+        const data = await datas.text();
+        const result = data.slice(data.search(/{"/));
+        if (result.status === "ok") {
           Toast.fire({
             icon: 'success',
             title: 'Success',
-            text: 'Bienvenid@ ' + data.result[0].name + ' !!!'
+            text: 'Bienvenid@ ' + result.result[0].name + ' !!!'
           }).then(() => window.location = 'index.php?controller=Index&action=index');
         };
 
-        if (data.status === "passBad") {
+        if (result.status === "passBad") {
           Toast.fire({
             icon: 'error',
             title: 'Error',
@@ -154,7 +155,7 @@ $(document).ready(function() {
           })
         };
 
-        if (data.status === "emailBad") {
+        if (result.status === "emailBad") {
           Toast.fire({
             icon: 'error',
             title: 'Error',
