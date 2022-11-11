@@ -183,7 +183,7 @@ $(document).ready(function() {
     if (result.isConfirmed) {
       const idAttr = el(".delete").dataset.id;
       const id = new FormData()
-        .append("id", idAttr);
+      id.append("id", idAttr);
       const datas = await fetch("index.php?controller=Users&action=delete", {
         method: "POST",
         body: id
@@ -193,9 +193,10 @@ $(document).ready(function() {
         const result = Toast.fire({
           icon: 'success',
           cancelButtonText: 'Cancelar',
-          title: 'Se eliminado correctamente el registro ' + id
+          title: 'Se eliminado correctamente el registro ' + idAttr
         })
-        if (result.isConfirmed) window.location = 'index.php?controller=Users&action=index';
+        console.log(result);
+        //if (result.isConfirmed) window.location = 'index.php?controller=Users&action=index';
       }
     }
 
