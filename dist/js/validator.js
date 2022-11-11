@@ -194,42 +194,9 @@ $(document).ready(function() {
             cancelButtonText: 'Cancelar',
             title: 'Se eliminado correctamente el registro ' + element.dataset.id
           });
-          console.log(result);
-          //if (result.isConfirmed) window.location = 'index.php?controller=Users&action=index';
+          if (result.isDismissed) window.location = 'index.php?controller=Users&action=index';
         }
       }
     })
   }
-
-  /*$(".delete").on('click', (e) => {
-    e.preventDefault();
-    let id = $(this).attr('data-id');
-    let controller = $(this).attr('data-controller');
-    Swal.fire({
-      icon: 'question',
-      title: '¿Quiere borrar el registro?',
-      showConfirmButton: true,
-      showCancelButton: true,
-      confirmButtonText: 'Eliminar',
-      cancelButtonText: 'Cancelar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        $.ajax({
-          type: 'post',
-          dataType: 'json',
-          url: "index.php?controller=" + controller + "&action=delete",
-          data: { id: id },
-          success: function() {
-            Toast.fire({
-              icon: 'success',
-              cancelButtonText: 'Cancelar',
-              title: 'Se eliminado correctamente el registro ' + id
-            }).then(function() {
-              window.location = 'index.php?controller=Users&action=index';
-            })
-          }
-        })
-      }
-    })
-  })*/
 });
