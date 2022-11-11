@@ -145,8 +145,7 @@ $(document).ready(function() {
             title: 'Success',
             text: 'Bienvenid@ ' + result.result[0].name + ' !!!'
           });
-          console.log(value);
-          //if (value) window.location = "index.php?controller=Index&action=index";
+          if (value.isDismissed) window.location = "index.php?controller=Index&action=index";
         };
 
         if (result.status == "passBad") {
