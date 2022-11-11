@@ -1,6 +1,4 @@
 $(document).ready(function() {
-  const el = tag => document.querySelector(tag);
-
   const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
@@ -169,38 +167,39 @@ $(document).ready(function() {
     }
   })
 
-  el(".delete").addEventListener("click", async e => {
-    e.preventDefault();
-    const result = await Swal.fire({
-      icon: 'question',
-      title: '¿Quiere borrar el registro?',
-      showConfirmButton: true,
-      showCancelButton: true,
-      confirmButtonText: 'Eliminar',
-      cancelButtonText: 'Cancelar'
-    });
-
-    if (result.isConfirmed) {
-      const idAttr = el(".delete").dataset.id;
-      const id = new FormData()
-      id.append("id", idAttr);
-      const datas = await fetch("index.php?controller=Users&action=delete", {
-        method: "POST",
-        body: id
+  const elements = document.querySelectorAll(".delete");
+  for (const element of elements) {
+    element.addEventListener("click", async e => {
+      e.preventDefault();
+      const result = await Swal.fire({
+        icon: 'question',
+        title: '¿Quiere borrar el registro?',
+        showConfirmButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'Eliminar',
+        cancelButtonText: 'Cancelar'
       });
-      
-      if (await datas.text()) {
-        const result = Toast.fire({
-          icon: 'success',
-          cancelButtonText: 'Cancelar',
-          title: 'Se eliminado correctamente el registro ' + idAttr
-        })
-        console.log(result);
-        //if (result.isConfirmed) window.location = 'index.php?controller=Users&action=index';
-      }
-    }
 
-  })
+      if (result.isConfirmed) {
+        const id = new FormData()
+          .append("id", element.dataset.id)
+        const datas = await fetch("index.php?controller=Users&action=delete", {
+          method: "POST",
+          body: id
+        });
+
+        if (await datas.text()) {
+          const result = await Toast.fire({
+            icon: 'success',
+            cancelButtonText: 'Cancelar',
+            title: 'Se eliminado correctamente el registro ' + element.dataset.id
+          });
+          console.log(result);
+          //if (result.isConfirmed) window.location = 'index.php?controller=Users&action=index';
+        }
+      }
+    })
+  }
 
   /*$(".delete").on('click', (e) => {
     e.preventDefault();
