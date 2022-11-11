@@ -23,6 +23,7 @@ class LoginController extends ControllerBase{
 
             //if(password_verify($_POST["password"], password_hash($result[0]->password, PASSWORD_DEFAULT))) {
             if(password_verify($_POST["password"], $result[0]->password)) {
+                print password_hash($result[0]->password, PASSWORD_DEFAULT);
                 //session_start();
                 $_SESSION['name'] = $result[0]->name;
                 $_SESSION['lastname'] = $result[0]->lastname;
