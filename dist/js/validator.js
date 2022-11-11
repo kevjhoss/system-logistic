@@ -181,14 +181,15 @@ $(document).ready(function() {
       });
 
       if (result.isConfirmed) {
-        const id = new FormData()
-          .append("id", element.dataset.id)
-        const datas = await fetch("index.php?controller=Users&action=delete", {
+        const id = new FormData();
+        id.append("id", element.dataset.id);
+        const data = await fetch("index.php?controller=Users&action=delete", {
           method: "POST",
           body: id
         });
+        const value = await data.text();
 
-        if (await datas.text()) {
+        if (value) {
           const result = await Toast.fire({
             icon: 'success',
             cancelButtonText: 'Cancelar',
