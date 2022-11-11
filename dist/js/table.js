@@ -1,4 +1,3 @@
-
 $(function () {
     $("#example1").DataTable({
       "responsive": true, 
@@ -13,8 +12,4 @@ $(function () {
 //         alert( 'DataTables has finished its initialisation.' );
 //       }
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    
 });
-
-
-
