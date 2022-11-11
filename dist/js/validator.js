@@ -130,21 +130,23 @@ $(document).ready(function() {
       $(element).removeClass('is-invalid');
       $(element).addClass('is-valid');
     },
-    submitHandler: function(form) {
-      const sendDatas = async () => {
-        const dataFormulario = new FormData(form);
+    submitHandler: (form) => {
+      const sendInfo = async () => {
+        const dataForm = new FormData(form);
         const datas = await fetch("index.php?controller=Login&action=login", {
           method: "POST",
-          body: dataFormulario
+          body: dataForm
         });
         const data = await datas.text();
         const result = JSON.parse(data.slice(data.search(/{"/)));
         if (result.status == "ok") {
-          Toast.fire({
+          const value = await Toast.fire({
             icon: 'success',
             title: 'Success',
             text: 'Bienvenid@ ' + result.result[0].name + ' !!!'
-          }).then(() => window.location = "index.php?controller=Index&action=index");
+          });
+          console.log(value);
+          if (value) window.location = "index.php?controller=Index&action=index";
         };
 
         if (result.status == "passBad") {
@@ -152,7 +154,7 @@ $(document).ready(function() {
             icon: 'error',
             title: 'Error',
             text: 'Password incorrecto'
-          })
+          });
         };
 
         if (result.status == "emailBad") {
@@ -160,10 +162,10 @@ $(document).ready(function() {
             icon: 'error',
             title: 'Error',
             text: 'Email no existe'
-          })
+          });
         };
       };
-      sendDatas()
+      sendInfo();
     }
   })
 
