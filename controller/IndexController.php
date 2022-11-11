@@ -22,6 +22,5 @@ class IndexController extends ControllerBase{
             "Hola"    =>"Desde la Vista"
         ));
     }
- 
 }
 ?>

@@ -52,7 +52,5 @@ class UsersController extends ControllerBase{
         die(json_encode($response));
         //$this->redirect("Users","index");
     }
-
- 
 }
 ?>

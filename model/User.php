@@ -55,10 +55,10 @@ class User extends EntityBase{
         //$query = "SELECT * FROM users WHERE email='".$this->email."'";
         //$result = $this->getByEmail($this->email);
         //if($result){
-            //$options = array(
-                //'cost' => 12
-            //);
-            $pass_hashed = $this->password; //password_hash($this->password, PASSWORD_DEFAULT, $options);
+            $options = array(
+                'cost' => 12
+            );
+            $pass_hashed = password_hash($this->password, PASSWORD_DEFAULT, $options);
             //var_dump($pass_hashed);
             $query="INSERT INTO users (name, lastname, email, password)
                     VALUES('".$this->name."',
