@@ -1,4 +1,6 @@
 $(document).ready(function() {
+  const el = tag => document.querySelector(tag);
+
   const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
@@ -144,7 +146,7 @@ $(document).ready(function() {
             icon: 'success',
             title: 'Success',
             text: 'Bienvenid@ ' + result.result[0].name + ' !!!'
-          }).then(() => window.location = 'index.php?controller=Index&action=index');
+          }).then(() => window.location = "index.php?controller=Index&action=index");
         };
 
         if (result.status == "passBad") {
@@ -167,7 +169,39 @@ $(document).ready(function() {
     }
   })
 
-  $(".delete").on('click', function(e) {
+  el(".delete").addEventListener("click", async e => {
+    e.preventDefault();
+    const result = await Swal.fire({
+      icon: 'question',
+      title: '¿Quiere borrar el registro?',
+      showConfirmButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar'
+    });
+
+    if (result.isConfirmed) {
+      const idAttr = el(".delete").dataset.id;
+      const id = new FormData()
+        .append("id", idAttr);
+      const datas = await fetch("index.php?controller=Users&action=delete", {
+        method: "POST",
+        body: id
+      });
+      
+      if (await datas.text()) {
+        const result = Toast.fire({
+          icon: 'success',
+          cancelButtonText: 'Cancelar',
+          title: 'Se eliminado correctamente el registro ' + id
+        })
+        if (result.isConfirmed) window.location = 'index.php?controller=Users&action=index';
+      }
+    }
+
+  })
+
+  /*$(".delete").on('click', (e) => {
     e.preventDefault();
     let id = $(this).attr('data-id');
     let controller = $(this).attr('data-controller');
@@ -197,5 +231,5 @@ $(document).ready(function() {
         })
       }
     })
-  })
+  })*/
 });
