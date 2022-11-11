@@ -146,7 +146,7 @@ $(document).ready(function() {
             text: 'Bienvenid@ ' + result.result[0].name + ' !!!'
           });
           console.log(value);
-          if (value) window.location = "index.php?controller=Index&action=index";
+          //if (value) window.location = "index.php?controller=Index&action=index";
         };
 
         if (result.status == "passBad") {
