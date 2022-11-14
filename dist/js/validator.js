@@ -168,8 +168,8 @@ $(document).ready(function() {
     }
   })
 
-  const elements = document.querySelectorAll(".delete");
-  for (const element of elements) {
+  const elements = id => document.querySelectorAll(id);
+  for (const element of elements(".delete")) {
     element.addEventListener("click", async e => {
       e.preventDefault();
       const result = await Swal.fire({
@@ -195,6 +195,56 @@ $(document).ready(function() {
             icon: 'success',
             cancelButtonText: 'Cancelar',
             title: 'Se eliminado correctamente el registro ' + element.dataset.id
+          });
+          if (result.isDismissed) window.location = 'index.php?controller=Users&action=index';
+        }
+      }
+    })
+  };
+
+  for (const element of elements(".update")) {
+    element.addEventListener("click", async (e) => {
+      e.preventDefault();
+      const html = `
+        <form method="post" id="updateUser">
+          <div class="form-group">
+            <label for="name">Nombre</label>
+            <input type="text" class="form-control" value="${element.dataset.name}" name="name" id="name" placeholder="Ingrese su nombre"/>
+          </div>
+          <div class="form-group">
+            <label for="lastname">Apellido</label>
+            <input type="text" class="form-control" value="${element.dataset.lastname}" name="lastname" id="lastname" placeholder="Ingrese su apellido"/>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" value="${element.dataset.email}" name="email" id="email" placeholder="Ingrese su email"/>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" value="${element.dataset.password}" name="password" id="password" placeholder="Ingrese su password"/>
+          </div>
+          <input type="hidden" class="form-control" value="${element.dataset.id}" name="id" id="${element.dataset.id}" placeholder="Ingrese su password"/>
+        </form>`;
+      const result = await Swal.fire({
+        icon: "question",
+        html: html,
+        confirmButtonText: '<button type="submit" value="enviar" class="btn btn-primary">Enviar <i class="fa-regular fa-paper-plane"></i></button>',
+        showDenyButton: true,
+        denyButtonText: 'Descartar',
+        title: 'Modificar Usuario',
+      });
+      if (result.isConfirmed) {
+        const data = new FormData(document.querySelector("#updateUser"));
+        const sendInfo = await fetch("index.php?controller=Users&action=update", {
+          method: 'POST',
+          body: data
+        });
+        const value = await sendInfo.json();
+        if (value[0]) {
+          const result = await Toast.fire({
+            icon: "success",
+            cancelButtonText: 'Cancelar',
+            title: 'Se edito correctamente el registro ' + element.dataset.id,
           });
           if (result.isDismissed) window.location = 'index.php?controller=Users&action=index';
         }

@@ -56,7 +56,7 @@
                        <td>
                         <!-- <a id="deleteUser" href="<?php echo $helper->url("Users","delete"); ?>&id=<?php echo $user->id; ?>" class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></a> -->
                         <a id="delete" href="#" data-id="<?php echo $user->id; ?>" data-controller="Users" class="btn btn-danger delete"><i class="fa-regular fa-trash-can"></i></a>
-                        <a href="#" data-id="<?php echo $user->id; ?>" data-name="<?php echo $user->name; ?>" data-lastname="<?php echo $user->lastname; ?>" 
+                        <a id="update" href="#" data-id="<?php echo $user->id; ?>" data-name="<?php echo $user->name; ?>" data-lastname="<?php echo $user->lastname; ?>" 
                         data-email="<?php echo $user->email; ?>" data-password="<?php echo $user->password; ?>" data-controller="Users"class="btn btn-warning update"><i class="fa-regular fa-pen-to-square"></i></a>
                       </td>
                            

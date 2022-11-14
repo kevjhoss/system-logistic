@@ -1,4 +1,4 @@
 <?php
-    define("DEFAULT_CONTROLLER", "Index");
-    define("DEFAULT_ACTION", "index");
+  const DEFAULT_CONTROLLER = "Index";
+  const DEFAULT_ACTION = "index";
 ?>
