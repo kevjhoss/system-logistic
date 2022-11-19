@@ -1,0 +1,56 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: 'Open-Sans';
+  src: url('../fonts/OpenSans-Medium.ttf');
+}
+
+/* Navegacion */
+nav {
+  display: grid;
+  grid-template-columns: 30em 1fr;
+  background-color: hsl(0,0%,0%);
+  height: 4em;
+}
+
+nav > svg {
+  align-self: center;
+  margin-left: 1.5em;
+}
+
+nav > ul {
+  display: flex;
+  justify-content: space-evenly;
+  list-style: none;
+  color: hsl(0,0%,100%);
+}
+
+nav > ul > li {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  font-family: 'Open-Sans';
+  width: 9em;
+  padding-bottom: .5em;
+  cursor: default;
+}
+
+nav > ul > li:nth-child(1) > svg {
+  transform: translate(0,-.3em);
+}
+
+nav > ul > li:nth-child(2) > svg {
+  transform: translate(0,-.1em);
+}
+
+nav > ul > li:nth-child(3) > svg {
+  transform: translate(0,-.1em);
+}
+
+nav > ul > li:nth-child(4) > svg {
+  transform: translate(0,-.3em);
+}

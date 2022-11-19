@@ -1,7 +1,7 @@
 <?php
 class ControllerBase {
   public function __construct() {
-    require_once 'Connection.php';
+    //require_once 'Connection.php';
     require_once 'EntityBase.php';
     require_once 'ModelBase.php';
     //Incluir todos los modelos

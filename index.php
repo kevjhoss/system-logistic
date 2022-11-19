@@ -11,6 +11,7 @@
     $controllerObj=loadController(DEFAULT_CONTROLLER);
     launchAction($controllerObj);
   }
+
   //Cargamos controladores y acciones
   if(isset($_GET["controller"])){
     $controllerObj=loadController($_GET["controller"]);

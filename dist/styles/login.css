@@ -1,0 +1,140 @@
+:root {
+  --color-activado: hsl(163.7, 74.4%, 39.8%);
+  --color-desactivado: hsl(199.1, 14.1%, 30.6%);
+  --color-hover: hsl(163.6, 74.2%, 34.9%);
+}
+
+body {
+  background-color: hsl(25.7, 5.3%, 74.3%);
+}
+
+main {
+  display: grid;
+  justify-items: center;
+  background-color: hsl(25.7, 5.3%, 74.3%);
+  height: 100%;
+}
+
+.box-login {
+  align-self: start;
+  display: grid;
+  grid-template-columns: [m-s]1fr 1fr[m-e];
+  row-gap: 2em;
+  background-color: hsl(207.5, 25%, 18.8%);
+  border-radius: .8em;
+  width: 50%;
+  padding: 2em 0;
+  margin: 4em 0;
+}
+
+.box-login > button {
+  color: hsl(0,0%,100%);
+  color: #a0b3b0;
+  background-color: var(--color-desactivado);
+  border: none;
+  font-family: 'Open-Sans';
+  font-size: 1.1rem;
+  width: 85%;
+  padding: .5em 0;
+  transition: background-color .3s ease, color .3s ease;
+}
+
+.box-login > button:nth-child(1) {
+  justify-self: end;
+}
+
+.box-login > button.active {
+  color: hsl(0,0%,100%);
+  background-color: var(--color-activado);
+}
+
+.box-login > button:hover {
+  color: hsl(0,0%,100%);
+  background-color: var(--color-hover);
+}
+
+.form-login {
+  grid-column: m-s/m-e;
+  display: grid;
+  justify-items: center;
+  row-gap: 2em;
+}
+
+.form-login > div {
+  position: relative;
+  width: 85%;
+}
+
+.form-login > div > input {
+  outline: none;
+  color: hsl(0,0%,100%);
+  background: none;
+  border: .1em solid  #a0b3b0;
+  font-family: 'Open-Sans';
+  font-size: 1rem;
+  width: 100%;
+  padding: .5em 0;
+  padding-left: 2.5em;
+}
+
+.form-login > div > .error {
+  border-color: hsl(0,100%,50%);
+}
+
+.form-login > div > .error:focus {
+  border-color: hsl(0,100%,50%);
+}
+
+.form-login > div > svg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+
+.form-login > div > button {
+  position: absolute;
+  background: none;
+  border: none;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 3.5em;
+  margin: auto;
+}
+
+.form-login > div > input:focus {
+  border-color: #1ab188;
+}
+
+.form-login > button {
+  outline: none;
+  color: hsl(0,0%,100%);
+  background-color: var(--color-activado);
+  border: none;
+  font-family: 'Open-Sans';
+  font-size: 1rem;
+  width: 85%;
+  padding: .5em 0;
+}
+
+.form-login > button:hover {
+  background-color: var(--color-hover);
+}
+
+.message-error {
+  position: absolute;
+  overflow: hidden;
+  color: hsl(0,0%,100%);
+  background-color: hsla(0,100%,50%, .8);
+  border-bottom-left-radius: .5em;
+  border-bottom-right-radius: .5em;
+  font-family: 'Open-Sans';
+  left: 0;
+  top: 2.5em;
+  width: 100%;
+  height: 0;
+  padding-left: .3em;
+  transition: height .3s ease-out;
+}
