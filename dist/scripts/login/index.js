@@ -1,6 +1,7 @@
-import {togglePassword} from "./password.js";
+import {togglePassword} from "./togglePassword.js";
 import {validateGmail, validatorPassword} from './validator.js';
-import {changeLogin, changeSignUp} from './changeLogin.js';
+import {changeLogin, changeSignUp} from './toggleLogin.js';
+import {sendInfo} from './fetchingData.js';
 
 const el = tag => document.querySelector(tag);
 
@@ -12,19 +13,23 @@ inputGmail.addEventListener("keyup", validateGmail);
 inputPassword.addEventListener("keyup", validatorPassword);
 
 const form = el(".form-login");
-form.addEventListener("submit", (e) => e.preventDefault());
+form.addEventListener("submit", sendInfo);
 
 const signUp = el("#sign-up");
 const login = el('#login');
 
 const changeLo = () => {
   changeLogin(form);
+  signUp.classList.toggle("active");
+  login.classList.toggle("active");
   signUp.addEventListener("click", changeUp);
   login.removeEventListener("click", changeLo);
 }
 
 const changeUp = () => {
   changeSignUp(form);
+  signUp.classList.toggle("active");
+  login.classList.toggle("active");
   login.addEventListener("click", changeLo);
   signUp.removeEventListener("click", changeUp);
 }

@@ -1,37 +1,39 @@
 <?php
-class LoginController extends ControllerBase{
+final class LoginController extends ControllerBase {
   public $connect;
   public $adapter;
+  public $pass;
   public function __construct() {
     parent::__construct();
+    $this->pass=new Encriptacion();
     $this->connect=new Connection();
     $this->adapter=$this->connect->connect();
   }
 
-  public function index(){
-    $this->view("loginIndex",[]);
+  public function index() {
+    $this->view('login');
   }
 
-  public function login(){
-    //Creamos el objeto usuario
+  public function login() {
     $user=new User($this->adapter);
-    //Conseguimos todos los usuarios
-    $result=$user->getByEmail($_POST["email"]);
-    if($result != null){
-      if(password_verify($_POST["password"], $result[0]->password)) {
-        //session_start();
-        $_SESSION['name'] = $result[0]->name;
-        $_SESSION['lastname'] = $result[0]->lastname;
-        $_SESSION['email'] = $result[0]->email;
-        //var_dump($result);
-        $resultSet = array("result" => $result, "status" => "ok");
-      } else {
-        $resultSet = array("result" => $result, "status" => "passBad");
-      }
-    } else {
-      $resultSet = array("status" => "emailBad");
+
+    $result=$user->getByEmail($_POST['user']);
+
+    if($result === null) {
+      $status = ['status' => 'error-email'];
+      die(json_encode($status));
     }
-    die(json_encode($resultSet));
+
+    if($_POST['password'] !== $this->pass->desencriptar($result[0]->password)) {
+      $status = ['status' => 'error-password'];
+      die(json_encode($status));
+    }
+
+    $_SESSION['name'] = $result[0]->name;
+    $_SESSION['lastname'] = $result[0]->lastname;
+    $_SESSION['user'] = $result[0]->email;
+    $status = ['status' => 'success'];
+    die(json_encode($status));
   }
 }
 ?>

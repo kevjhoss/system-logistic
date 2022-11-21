@@ -4,6 +4,7 @@
   <head>
     <?php include './view/meta.php';?>
     <link rel="stylesheet" type="text/css" href="/dist/styles/login.css">
+    <script type='module' src='/dist/scripts/login/index.js' defer></script>
     <title>Inicio de sesion</title>
   </head>
   <body>

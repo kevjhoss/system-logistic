@@ -1,6 +1,6 @@
 <?php
 //FUNCIONES PARA EL CONTROLADOR FRONTAL
-function loadController($controller){
+function loadController(string $controller) {
   $controlador=ucwords($controller).'Controller';
   $strFileController='controller/'.$controlador.'.php';
 
@@ -12,12 +12,12 @@ function loadController($controller){
   return $controllerObj;
 }
 
-function loadAction($controllerObj,$action){
+function loadAction(object $controllerObj,string $action){
   $accion=$action;
   $controllerObj->$accion();
 }
 
-function launchAction($controllerObj){
+function launchAction(object $controllerObj){
   if(isset($_GET["action"]) && method_exists($controllerObj, $_GET["action"])){
     loadAction($controllerObj, $_GET["action"]);
   }else{

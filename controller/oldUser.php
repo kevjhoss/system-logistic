@@ -1,5 +1,5 @@
 <?php
-class UsersController extends ControllerBase {
+class OldUsers extends ControllerBase {
   public $connect;
   public $adapter;
   public function __construct() {

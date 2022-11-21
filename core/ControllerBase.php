@@ -1,9 +1,10 @@
 <?php
 class ControllerBase {
   public function __construct() {
-    //require_once 'Connection.php';
+    require_once 'Connection.php';
     require_once 'EntityBase.php';
     require_once 'ModelBase.php';
+    require_once 'Encriptacion.php';
     //Incluir todos los modelos
     foreach (glob("model/*.php") as $file) {
       require_once $file;
@@ -17,7 +18,7 @@ class ControllerBase {
     * vistas y carga la vista que le llega como parámetro. En resumen un método para
     * renderizar vistas.
     */
-  public function view($view, $data) {
+  public function view(string $view, array $data = []) {
     foreach ($data as $id_assoc => $valor) {
       ${$id_assoc} = $valor;
     }
@@ -29,5 +30,4 @@ class ControllerBase {
   public function redirect($controller = DEFAULT_CONTROLLER, $action = DEFAULT_ACTION) {
     header("Location:index.php?controller=" . $controller . "&action=" . $action);
   }
-  //Métodos para los controladores
 }

@@ -1,17 +1,36 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 :root {
   --color-activado: hsl(163.7, 74.4%, 39.8%);
   --color-desactivado: hsl(199.1, 14.1%, 30.6%);
   --color-hover: hsl(163.6, 74.2%, 34.9%);
+  --text-normal: 'Open-Sans';
+  --text-alert: 'OpenSans-Semibold';
+}
+
+@font-face {
+  font-family: 'Open-Sans';
+  src: url('../fonts/OpenSans-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'OpenSans-Semibold';
+  src: url('../fonts/OpenSans-SemiBold.ttf');
 }
 
 body {
-  background-color: hsl(25.7, 5.3%, 74.3%);
+  background-color: hsl(219.5, 100%, 8%);
+  overflow-X: hidden;
 }
 
 main {
   display: grid;
   justify-items: center;
-  background-color: hsl(25.7, 5.3%, 74.3%);
+  background-color: hsl(219.5, 100%, 8%);
   height: 100%;
 }
 
@@ -24,7 +43,7 @@ main {
   border-radius: .8em;
   width: 50%;
   padding: 2em 0;
-  margin: 4em 0;
+  margin: 5em 0;
 }
 
 .box-login > button {
@@ -32,7 +51,7 @@ main {
   color: #a0b3b0;
   background-color: var(--color-desactivado);
   border: none;
-  font-family: 'Open-Sans';
+  font-family: var(--text-normal);
   font-size: 1.1rem;
   width: 85%;
   padding: .5em 0;
@@ -43,7 +62,7 @@ main {
   justify-self: end;
 }
 
-.box-login > button.active {
+.box-login > .active {
   color: hsl(0,0%,100%);
   background-color: var(--color-activado);
 }
@@ -70,7 +89,7 @@ main {
   color: hsl(0,0%,100%);
   background: none;
   border: .1em solid  #a0b3b0;
-  font-family: 'Open-Sans';
+  font-family: var(--text-normal);
   font-size: 1rem;
   width: 100%;
   padding: .5em 0;
@@ -94,6 +113,9 @@ main {
 }
 
 .form-login > div > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   background: none;
   border: none;
@@ -113,7 +135,7 @@ main {
   color: hsl(0,0%,100%);
   background-color: var(--color-activado);
   border: none;
-  font-family: 'Open-Sans';
+  font-family: var(--text-normal);
   font-size: 1rem;
   width: 85%;
   padding: .5em 0;
@@ -130,11 +152,82 @@ main {
   background-color: hsla(0,100%,50%, .8);
   border-bottom-left-radius: .5em;
   border-bottom-right-radius: .5em;
-  font-family: 'Open-Sans';
+  font-family: var(--text-normal);
   left: 0;
   top: 2.5em;
   width: 100%;
   height: 0;
   padding-left: .3em;
   transition: height .3s ease-out;
+}
+
+/* Alert Box */
+.alert {
+  position: fixed;
+  font-family: var(--text-alert);
+  top: .8em;
+  right: 0;
+  width: 55%;
+  padding: .7em 0;
+  padding-left: 3.5em;
+  translate: 105% 0;
+  animation-duration: 2.5s;
+  animation-name: bound;
+}
+
+.alert-success {
+  color: #0ad406;
+  text-shadow: .15em .1em #00040a;
+  background-color: rgba(7, 149, 66, 0.12);
+  box-shadow: 0 0 .1em #259c08;
+  border: .1em solid rgba(36, 241, 6, 0.46);
+}
+
+.alert-error {
+  color: #ff0303;
+  text-shadow: 2px 1px #00040a;
+  background-color: rgba(220, 17, 1, 0.16);
+  box-shadow: 0px 0px 2px #ff0303;
+  border: .1em solid rgba(241, 6, 6, 0.81);
+}
+
+.alert-success > svg {
+  position: absolute;
+  fill: hsl(118.8, 94.5%, 42.7%);
+  left: .7em;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.alert-error > svg {
+  position: absolute;
+  fill: hsl(0, 100%, 50.6%);
+  left: .7em;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+@keyframes bound {
+  0% {translate: 105% 0}
+  5% {translate: 30% 0}
+  70% {translate: 30% 0}
+  90% {translate: 105% 0};
+  100% {translate: 105% 0};
+}
+
+.alert-success::before, .alert-error::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: calc(100% - 44px);
+  border-left: 1px solid;
+  border-right: 2px solid;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+  left: 0;
+  top: 50%;
+  transform: translate(0,-50%);
+  height: 20px;
 }

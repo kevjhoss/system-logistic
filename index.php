@@ -7,7 +7,7 @@
   //Funciones para el controlador frontal
   require_once 'core/ControllerFront.func.php';
 
-  if ($_GET["controller"] == "Login" && isset($_SESSION["email"])) {
+  if ($_GET["controller"] == "Login" && isset($_SESSION["user"])) {
     $controllerObj=loadController(DEFAULT_CONTROLLER);
     launchAction($controllerObj);
   }

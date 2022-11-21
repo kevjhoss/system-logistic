@@ -4,11 +4,6 @@ class EntityBase {
   private $table, $db, $connection;
   public function __construct($table, $adpater) {
     $this->table = (string) $table;
-    /*
-    require_once 'Connection.php';
-    $this->connection = new Connection();
-    $this->db=$this->connection->connect();
-    */
     $this->connection = null;
     $this->db = $adpater;
   }
@@ -42,7 +37,7 @@ class EntityBase {
   }
 
   public function getByEmail($email) {
-    $query = $this->db->query("SELECT * FROM $this->table WHERE email='" . $email . "'");
+    $query = $this->db->query("SELECT * FROM $this->table WHERE email='$email'");
 
     while ($row = $query->fetch_object()) {
       $resultSet[] = $row;
