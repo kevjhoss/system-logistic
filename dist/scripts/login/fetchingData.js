@@ -15,7 +15,7 @@ const sendInfo = async e => {
     });
     const {status} = await datas.json();
     if (status === "error-email") return message(status,"Email incorrecto");
-    if (status === "error-password") return message(status,"Contrasena incorrecta");
+    if (status === "error-password") return message(status,"Contraseña incorrecta");
     message(status,"Usuario Verificado");
     setTimeout(() => window.location = 'index.php?controller=User&action=index', 1000);
   }
