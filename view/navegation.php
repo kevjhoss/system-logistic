@@ -5,25 +5,25 @@
     <li class='active-link'>
       <a href="index.php?controller=User&action=panel" class='panel' >
         <?php echo Icons('home', '1em', 'hsl(0,0%,100%)')?>
-        Panel
+        Inicio
       </a>
     </li>
     <li>
       <a href="index.php?controller=User&action=envio" class='envio'>
-        Envio
+        Nuevo Envio
         <?php echo Icons('arrow-down', '1em', 'hsl(0,0%,100%)')?>
       </a>
     </li>
     <li>
       <a href="index.php?controller=User&action=mis_envios" class='misenvios'>
-        Mis envios
+        Mis Envios
         <?php echo Icons('arrow-down', '1em', 'hsl(0,0%,100%)')?>
       </a>
     </li>
     <li>
       <a href="index.php?controller=User&action=cuenta" class='cuenta'>
         <?php echo Icons('account', '1em', 'hsl(0,0%,100%)')?>
-        Cuenta
+        Mi Cuenta
       </a>
     </li>
   </ul>
