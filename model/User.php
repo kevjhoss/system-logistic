@@ -1,65 +1,72 @@
 <?php
 class User extends EntityBase {
-  private $id;
-  private $name;
-  private $lastname;
-  private $email;
+  //private $id_cliente;
+  private $nombre_cliente;
+  private $numero_documento;
+  private $dirrecion;
+  private $localidad;
+  private $provincia;
+  private $codigo_postal;
+  private $telefono;
+  private $correo_electronico;
   private $password;
 
   public function __construct($adapter) {
-    $table = "users";
+    $table = "Clientes";
     parent::__construct($table, $adapter);
   }
 
-  public function getId() {
-    return $this->id;
+  public function setFullName($nombre_cliente) {
+    $this->nombre_cliente = $nombre_cliente;
   }
 
-  public function setId($id) {
-    $this->id = $id;
+  public function setNumberDocument($document) {
+    $this->numero_documento = $document;
   }
 
-  public function getName() {
-    return $this->name;
+  public function setDirrection($dirrecion) {
+    $this->dirrecion = $dirrecion;
   }
 
-  public function setName($name) {
-    $this->name = $name;
+  public function setLocation($localidad) {
+    $this->localidad = $localidad;
   }
 
-  public function getLastname() {
-    return $this->lastname;
+  public function setProvince($provincia) {
+    $this->provincia = $provincia;
   }
 
-  public function setLastname($lastname) {
-    $this->lastname = $lastname;
+  public function setPostal($codigo_postal) {
+    $this->codigo_postal = $codigo_postal;
   }
 
-  public function getEmail() {
-    return $this->email;
+  public function setTelefono($telefono) {
+    $this->telefono = $telefono;
   }
 
-  public function setEmail($email) {
-    $this->email = $email;
-  }
-
-  public function getPassword() {
-    return $this->password;
+  public function setEmail($correo_electronico) {
+    $this->correo_electronico = $correo_electronico;
   }
 
   public function setPassword($password) {
     $this->password = $password;
   }
+
   public function save() {
-    $options = array(
-      'cost' => 12
-    );
-    $pass_hashed = password_hash($this->password, PASSWORD_DEFAULT, $options);
-    $query = "INSERT INTO users (name, lastname, email, password)
-              VALUES(\"$this->name\",\"$this->lastname\",\"$this->email\",\"$pass_hashed\")";
+    $pass_hashed = $this->password;
+    $query = "INSERT INTO Clientes (nombre_cliente, numero_documento, direccion, localidad, provincia, codigo_postal, telefono, correo_electronico, password)
+              VALUES(
+                \"$this->nombre_cliente\",
+                \"$this->numero_documento\",
+                \"$this->dirrecion\",
+                \"$this->localidad\",
+                \"$this->provincia\",
+                \"$this->codigo_postal\",
+                \"$this->telefono\",
+                \"$this->correo_electronico\",
+                \"$pass_hashed\");";
     $save = $this->db()->query($query);
-    $response = array($save);
-    return array($response);
+    return ['status' => $save];
   }
   public function update() {
     $query = "UPDATE users SET

@@ -1,6 +1,4 @@
-import {panel} from './components/section.js';
-
-const addEvents = (element) => {
+const addEvents = async (element) => {
   element.addEventListener("click", async e => {
     e.preventDefault();
     const li = e.target.parentNode;
@@ -10,6 +8,7 @@ const addEvents = (element) => {
         if (el.nodeName === "LI") el.classList.remove("active-link");
       });
       li.classList.add("active-link");
+      const {panel} = await import("./components/section.js");
       document.body.replaceChild(panel(a.innerText), document.querySelector("section"));
     };
   });

@@ -24,16 +24,29 @@ final class LoginController extends ControllerBase {
       die(json_encode($status));
     }
 
-    if($_POST['password'] !== $this->pass->desencriptar($result[0]->password)) {
+    if($_POST['password'] !== $result[0]->password) {
       $status = ['status' => 'error-password'];
       die(json_encode($status));
     }
 
-    $_SESSION['name'] = $result[0]->name;
-    $_SESSION['lastname'] = $result[0]->lastname;
-    $_SESSION['user'] = $result[0]->email;
+    $_SESSION['user'] = $result[0]->correo_electronico;
     $status = ['status' => 'success'];
     die(json_encode($status));
+  }
+
+  public function create() {
+    $user = new User($this->adapter);
+    $user->setFullName($_POST['fullName']);
+    $user->setNumberDocument($_POST['document-number']);
+    $user->setDirrection($_POST['dirrection']);
+    $user->setLocation($_POST['location']);
+    $user->setProvince($_POST['province']);
+    $user->setPostal($_POST['code-postal']);
+    $user->setTelefono($_POST['phone']);
+    $user->setEmail($_POST['email']);
+    $user->setPassword($_POST['password']);
+    $user->save();
+    die(json_encode(['status' => 'success']));
   }
 }
 ?>

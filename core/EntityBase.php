@@ -37,7 +37,7 @@ class EntityBase {
   }
 
   public function getByEmail($email) {
-    $query = $this->db->query("SELECT * FROM $this->table WHERE email='$email'");
+    $query = $this->db->query("SELECT * FROM $this->table WHERE correo_electronico='$email'");
 
     while ($row = $query->fetch_object()) {
       $resultSet[] = $row;

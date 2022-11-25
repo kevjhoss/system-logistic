@@ -2,14 +2,18 @@ import {validateGmail, validatorPassword} from './validator.js'
 import {togglePassword} from './togglePassword.js';
 import {Icons} from './Icons.js';
 import {createSvg} from './createElement.js';
+import {sendInfoLogin, sendInfoSign} from './fetchingData.js';
 
 const sign_up = [
-  {placeholder: 'Ingrese su nombre', name: 'name', type: 'text'},
-  {placeholder: 'Ingrese su apellido', name: 'lastname', type: 'text'},
-  {placeholder: 'Ingrese su numero de documento', name: 'document-number', type: 'text'},
+  {placeholder: 'Ingrese su Nombre Completo', name: 'fullName', type: 'text'},
+  {placeholder: 'Ingrese su Numero de Documento', name: 'document-number', type: 'text'},
+  {placeholder: 'Ingrese su Dirreccion', name: 'dirrection', type: 'text'},
+  {placeholder: 'Ingrese su Localidad', name: 'location', type: 'text'},
+  {placeholder: 'Ingrese su Provincia', name: 'province', type: 'text', },
+  {placeholder: 'Ingrese su Codigo Postal', name: 'code-postal', type: 'text'},
+  {placeholder: 'Ingrese su Telefono', name: 'phone', type: 'tel'},
   {placeholder: 'Ingrese su Correo Electronico', name: 'email', type: 'text', call: validateGmail},
-  {placeholder: 'Ingrese su contraseña...', name: 'password', type: 'password', call: validatorPassword, toggleIcon: togglePassword},
-  {placeholder: 'Ingrese su numero', name: 'phone', type: 'tel'}
+  {placeholder: 'Ingrese su Contraseña', name: 'password', type: 'password', call: validatorPassword, toggleIcon: togglePassword},
 ]
 
 const login = [
@@ -65,8 +69,10 @@ const changeSignUp = (parent) => {
     const input = createContent(data);
     parent.appendChild(input);
   }
-  const button = createButton("Crear Cuenta", "button");
+  const button = createButton("Crear Cuenta", "submit");
   parent.appendChild(button);
+  parent.removeEventListener("submit", sendInfoLogin);
+  parent.addEventListener("submit", sendInfoSign);
 }
 
 const changeLogin = (parent) => {
@@ -77,6 +83,8 @@ const changeLogin = (parent) => {
   }
   const button = createButton("Ingresar", "submit");
   parent.appendChild(button);
+  parent.removeEventListener("submit", sendInfoSign);
+  parent.addEventListener("submit", sendInfoLogin);
 }
 
 export {

@@ -1,7 +1,6 @@
 import {togglePassword} from "./togglePassword.js";
 import {validateGmail, validatorPassword} from './validator.js';
 import {changeLogin, changeSignUp} from './toggleLogin.js';
-import {sendInfo} from './fetchingData.js';
 
 const el = tag => document.querySelector(tag);
 
@@ -13,7 +12,6 @@ inputGmail.addEventListener("keyup", validateGmail);
 inputPassword.addEventListener("keyup", validatorPassword);
 
 const form = el(".form-login");
-form.addEventListener("submit", sendInfo);
 
 const signUp = el("#sign-up");
 const login = el('#login');

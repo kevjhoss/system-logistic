@@ -5,18 +5,18 @@ class FormDestiny extends HTMLElement {
     this.datas = datas;
 
     const shadow = this.attachShadow({mode: "open"});
-    const form = document.createElement("form");
+    const form = create("form");
     const content = new DocumentFragment();
     for (const value of this.datas) {
-      const label = document.createElement("label");
+      const label = create("label");
       label.setAttribute("for", value.name);
       label.textContent = value.label;
-      const input = document.createElement("input");
+      const input = create("input");
       input.name = value.name;
       content.appendChild(label);
       content.appendChild(input);
     };
-    const style = document.createElement('link');
+    const style = create('link');
     style.setAttribute('rel', 'stylesheet');
     style.setAttribute('href', '/dist/styles/components/formulario.css');
 

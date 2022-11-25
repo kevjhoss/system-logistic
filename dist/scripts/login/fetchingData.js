@@ -1,7 +1,7 @@
 import {createAlert} from './alert.js';
 const main = document.querySelector("main");
 
-const sendInfo = async e => {
+const sendInfoLogin = async e => {
   e.preventDefault();
   const form = new FormData(e.target);
 
@@ -10,7 +10,7 @@ const sendInfo = async e => {
     const elementAlert = document.querySelector(".alert");
     if (elementAlert !== null) main.removeChild(elementAlert);
     const datas = await fetch("index.php?controller=Login&action=login", {
-      method: 'POST',
+      method: "POST",
       body: form
     });
     const {status} = await datas.json();
@@ -21,6 +21,26 @@ const sendInfo = async e => {
   }
 }
 
+const sendInfoSign = async e => {
+  e.preventDefault();
+  const form = new FormData(e.target);
+  if (form.get("fullName") !== "") {
+    const message = (status,str) => main.appendChild(createAlert(status,str));
+    const elementAlert = document.querySelector(".alert");
+    if (elementAlert !== null) main.removeChild(elementAlert);
+    const datas = await fetch("index.php?controller=Login&action=create", {
+      method: "POST",
+      body: form
+    });
+    const {status} = await datas.json();
+    if (status === "success") {
+      message(status, "Cuenta Creada Con Exito");
+      setTimeout(() => window.location = 'index.php?controller=User&action=index', 1000);
+    }
+  }
+}
+
 export {
-  sendInfo
+  sendInfoLogin,
+  sendInfoSign
 }

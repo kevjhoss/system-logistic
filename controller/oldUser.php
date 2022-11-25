@@ -8,18 +8,6 @@ class OldUsers extends ControllerBase {
     $this->adapter = $this->connect->connect();
   }
 
-  public function index() {
-    //Creamos el objeto usuario
-    $user = new User($this->adapter);
-    //Conseguimos todos los usuarios
-    $allusers = $user->getAll();
-    //Cargamos la vista index y le pasamos valores
-    $this->view("userList", array(
-      "allusers" => $allusers,
-      "Hola"    => "Desde la Vista"
-    ));
-  }
-
   public function userForm() {
     $this->view("userForm", []);
   }
