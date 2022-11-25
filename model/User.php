@@ -10,10 +10,12 @@ class User extends EntityBase {
   private $telefono;
   private $correo_electronico;
   private $password;
+  private $pass;
 
   public function __construct($adapter) {
     $table = "Clientes";
     parent::__construct($table, $adapter);
+    $this->pass=new Encriptacion();
   }
 
   public function setFullName($nombre_cliente) {
@@ -53,7 +55,7 @@ class User extends EntityBase {
   }
 
   public function save() {
-    $pass_hashed = $this->password;
+    $pass_hashed = $this->pass->encriptar($this->password);
     $query = "INSERT INTO Clientes (nombre_cliente, numero_documento, direccion, localidad, provincia, codigo_postal, telefono, correo_electronico, password)
               VALUES(
                 \"$this->nombre_cliente\",

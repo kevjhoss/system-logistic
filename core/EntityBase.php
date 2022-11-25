@@ -3,6 +3,7 @@ class EntityBase {
   //ESTA ENTIDAD NOS VA A PERMITIR TENER ALGUNAS QUERIES POR DEFUALT
   private $table, $db, $connection;
   public function __construct($table, $adpater) {
+    require_once 'Encriptacion.php';
     $this->table = (string) $table;
     $this->connection = null;
     $this->db = $adpater;

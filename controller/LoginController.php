@@ -24,7 +24,7 @@ final class LoginController extends ControllerBase {
       die(json_encode($status));
     }
 
-    if($_POST['password'] !== $result[0]->password) {
+    if($_POST['password'] !== $this->pass->desencriptar($result[0]->password)) {
       $status = ['status' => 'error-password'];
       die(json_encode($status));
     }
