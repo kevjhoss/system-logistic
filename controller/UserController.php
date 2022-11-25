@@ -11,20 +11,4 @@ final class UserController extends ControllerBase {
   public function index() {
     $this->view("home");
   }
-
-  public function cuenta() {
-    $this->view("cuenta");
-  }
-
-  public function misenvios() {
-    $this->view("misenvios");
-  }
-
-  public function envio() {
-    $this->view("envio");
-  }
-
-  public function panel() {
-    $this->view("panel");
-  }
 }

@@ -68,7 +68,7 @@ ul > li:nth-child(4) a > svg {
   transform: translate(0,-.3em);
 }
 
-ul > .active-link {
+.active-link {
   border-bottom: .4em solid aqua;
 }
 
@@ -103,4 +103,51 @@ section > .snipper {
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Nuevo Envio */
+.box-envio {
+  display: grid;
+  grid-template-columns: [m-s]1fr 1fr[m-e];
+  row-gap: 1.5em;
+  column-gap: 1.5em;
+  padding: 1.2em 0;
+}
+
+.box-envio > h2 {
+  grid-column: m-s/m-e;
+  font-family: 'Open-Sans';
+}
+
+.box-envio > button {
+  justify-self: end;
+  color: hsl(0,0%,0%);
+  background-color: hsl(0,0%,97%);
+  border: .1em solid hsl(0,0%,5%);
+  border-radius: .6em;
+  font-family: 'Open-Sans';
+  font-size: 1rem;
+  width: 13.8em;
+  padding: .5em 0;
+  transition: background-color .25s ease, color .25s ease;
+}
+
+.box-envio > button:nth-child(3) {
+  justify-self: start;
+}
+
+.box-envio > .btn-active {
+  color: hsl(226.9, 65%, 23.5%);
+  background-color: hsl(47.6, 100%, 54.5%);
+  border: .15em solid hsl(226.9, 65%, 23.5%);
+}
+
+.box-envio > button:hover {
+  color: hsl(226.9, 65%, 23.5%);
+  background-color: hsl(47.6, 100%, 54.5%);
+  border: .15em solid hsl(226.9, 65%, 23.5%);
+}
+
+.box-envio > form-destiny {
+  grid-column: m-s/m-e;
 }

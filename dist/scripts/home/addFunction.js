@@ -1,6 +1,6 @@
-import {getHtml} from './fetchingData.js';
+import {panel} from './components/section.js';
 
-const addEvents = (element, section) => {
+const addEvents = (element) => {
   element.addEventListener("click", async e => {
     e.preventDefault();
     const li = e.target.parentNode;
@@ -9,9 +9,8 @@ const addEvents = (element, section) => {
       element.childNodes.forEach(el => {
         if (el.nodeName === "LI") el.classList.remove("active-link");
       });
-      section.innerHTML = "<div class='snipper'></div>"
       li.classList.add("active-link");
-      section.innerHTML = await getHtml(a.classList.value);
+      document.body.replaceChild(panel(a.innerText), document.querySelector("section"));
     };
   });
 };
