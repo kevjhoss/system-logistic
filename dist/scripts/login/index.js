@@ -1,37 +1,34 @@
-import {togglePassword} from "./togglePassword.js";
-import {validateGmail, validatorPassword} from './validator.js';
 import {changeLogin, changeSignUp} from './toggleLogin.js';
 import {sendInfoLogin} from './fetchingData.js';
+import {el} from './createElement.js';
 
-const el = tag => document.querySelector(tag);
-
-const button = el("#toggle-password");
-const inputGmail = el("input[name=user]");
-const inputPassword = el("input[name=password]");
-button.addEventListener("click", () => togglePassword(button, inputPassword));
-inputGmail.addEventListener("keyup", validateGmail);
-inputPassword.addEventListener("keyup", validatorPassword);
+//llamando a la funcion changeLogin() para renderizar el login inicial
+changeLogin();
 
 const form = el(".form-login");
 form.addEventListener("submit", sendInfoLogin);
 
-const signUp = el("#sign-up");
-const login = el('#login');
+const btnSignUp = el("#sign-up");
+const btnLogin = el('#login');
 
-const changeLo = () => {
-  changeLogin(form);
-  signUp.classList.toggle("active");
-  login.classList.toggle("active");
-  signUp.addEventListener("click", changeUp);
-  login.removeEventListener("click", changeLo);
+/*
+  encapsulando las funciones importadas {changeLogin(), changeSignUp()} para agregar y remover los eventos
+  asignados a los botones {btnSignUp, btnLogin}
+*/
+const login = () => {
+  changeLogin();
+  btnLogin.classList.add("active");
+  btnSignUp.classList.remove("active");
+  btnSignUp.addEventListener("click", signUp);
+  btnLogin.removeEventListener("click", login);
 }
 
-const changeUp = () => {
-  changeSignUp(form);
-  signUp.classList.toggle("active");
-  login.classList.toggle("active");
-  login.addEventListener("click", changeLo);
-  signUp.removeEventListener("click", changeUp);
+const signUp = () => {
+  changeSignUp();
+  btnSignUp.classList.add("active");
+  btnLogin.classList.remove("active");
+  btnLogin.addEventListener("click", login);
+  btnSignUp.removeEventListener("click", signUp);
 }
 
-signUp.addEventListener("click", changeUp);
+btnSignUp.addEventListener("click", signUp);

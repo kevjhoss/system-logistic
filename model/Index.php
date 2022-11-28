@@ -7,7 +7,7 @@ class Index extends EntityBase {
   private $password;
 
   public function __construct($adapter) {
-    $table = "users";
+    $table = "Clientes";
     parent::__construct($table, $adapter);
   }
 

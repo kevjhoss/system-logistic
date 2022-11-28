@@ -12,8 +12,8 @@ class User extends EntityBase {
   private $password;
   private $pass;
 
-  public function __construct($adapter) {
-    $table = "Clientes";
+  public function __construct(string $name, $adapter) {
+    $table = $name;
     parent::__construct($table, $adapter);
     $this->pass=new Encriptacion();
   }

@@ -106,21 +106,26 @@ section > .snipper {
 }
 
 /* Nuevo Envio */
-.box-envio {
+#box-envio {
   display: grid;
-  grid-template-columns: [m-s]1fr 1fr[m-e];
-  row-gap: 1.5em;
-  column-gap: 1.5em;
-  padding: 1.2em 0;
+  padding: 1.2em 18em;
 }
 
-.box-envio > h2 {
+content-origin, content-destiny, content-shipment {
   grid-column: m-s/m-e;
-  font-family: 'Open-Sans';
 }
 
-.box-envio > button {
-  justify-self: end;
+.l-origin {
+  grid-template-columns: [m-s] 1fr [c-s] 1fr [c-e] 1fr [m-e];
+}
+
+.l-destiny {
+  grid-template-columns: [m-s] 1fr [c-s] 1fr [i-s] 1fr [c-e] 1fr [m-e];
+  column-gap: 1em;
+  row-gap: 2em;
+}
+
+.btn--box {
   color: hsl(0,0%,0%);
   background-color: hsl(0,0%,97%);
   border: .1em solid hsl(0,0%,5%);
@@ -132,22 +137,42 @@ section > .snipper {
   transition: background-color .25s ease, color .25s ease;
 }
 
-.box-envio > button:nth-child(3) {
-  justify-self: start;
-}
-
-.box-envio > .btn-active {
+.btn--box.is-active {
   color: hsl(226.9, 65%, 23.5%);
   background-color: hsl(47.6, 100%, 54.5%);
   border: .15em solid hsl(226.9, 65%, 23.5%);
 }
 
-.box-envio > button:hover {
+.btn--box.is-end {
+  justify-self: end;
+}
+
+.btn--box:hover {
   color: hsl(226.9, 65%, 23.5%);
   background-color: hsl(47.6, 100%, 54.5%);
   border: .15em solid hsl(226.9, 65%, 23.5%);
 }
 
-.box-envio > form-destiny {
-  grid-column: m-s/m-e;
+.btn--action {
+  background-color: hsl(226.9, 65%, 23.5%);
+  border: none;
+  border-radius: .4em;
+  width: 9em;
+  padding: .25em 0;
+}
+
+.btn-action--text {
+  color: hsl(0,0%,100%);
+  font-family: 'Open-Sans';
+  font-size: 1rem;
+}
+
+.btn-next--grid {
+  grid-column: c-e/m-e;
+  justify-self: center;
+}
+
+.btn-prev--grid {
+  grid-column: m-s/c-s;
+  justify-self: center;
 }

@@ -1,0 +1,34 @@
+div {
+  display: grid;
+  grid-template-columns: [m-s]12em[c-s]5em[i-s]5em[c-e]1fr[m-e];
+  row-gap: .8em;
+  column-gap: 1.2em;
+}
+
+label {
+  grid-column: m-s/c-s;
+  justify-self: end;
+  font-family: 'Open-Sans';
+}
+
+input {
+  grid-column: c-s/m-e;
+  outline: none;
+  border: .1em solid hsl(0,0%,0%);
+  border-radius: .35em;
+  font-family: 'Open-Sans';
+  padding: .3em 1em;
+}
+
+label[for=codigo-area] {
+  grid-column: m-s/c-s;
+}
+input[name=codigo-area] {
+  grid-column: c-s/i-s;
+}
+label[for=telefono] {
+  grid-column: i-s/c-e;
+}
+input[name=telefono] {
+  grid-column: c-e/m-e;
+}

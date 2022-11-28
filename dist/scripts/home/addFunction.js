@@ -8,8 +8,22 @@ const addEvents = async (element) => {
         if (el.nodeName === "LI") el.classList.remove("active-link");
       });
       li.classList.add("active-link");
-      const {panel} = await import("./components/section.js");
-      document.body.replaceChild(panel(a.innerText), document.querySelector("section"));
+      if (a.innerText === "Inicio") {
+        const {renderLayout} = await import("./layout/Inicio/createBox.js");
+        return renderLayout()
+      }
+      if (a.innerText === "Nuevo Envio") {
+        const {renderLayout} = await import("./layout/NuevoEnvio/createBox.js");
+        return renderLayout();
+      }
+      if (a.innerText === "Mis Envios") {
+        const {renderLayout} = await import("./layout/MisEnvios/createBox.js");
+        return renderLayout()
+      }
+      if (a.innerText === "Mi Cuenta") {
+        const {renderLayout} = await import("./layout/MiCuenta/createBox.js");
+        return renderLayout()
+      }
     };
   });
 };

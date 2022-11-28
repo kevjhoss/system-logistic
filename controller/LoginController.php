@@ -15,7 +15,7 @@ final class LoginController extends ControllerBase {
   }
 
   public function login() {
-    $user=new User($this->adapter);
+    $user=new User("Clientes", $this->adapter);
 
     $result=$user->getByEmail($_POST['user']);
 
@@ -35,7 +35,7 @@ final class LoginController extends ControllerBase {
   }
 
   public function create() {
-    $user = new User($this->adapter);
+    $user = new User("Clientes", $this->adapter);
     $user->setFullName($_POST['fullName']);
     $user->setNumberDocument($_POST['document-number']);
     $user->setDirrection($_POST['dirrection']);

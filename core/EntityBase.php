@@ -2,9 +2,9 @@
 class EntityBase {
   //ESTA ENTIDAD NOS VA A PERMITIR TENER ALGUNAS QUERIES POR DEFUALT
   private $table, $db, $connection;
-  public function __construct($table, $adpater) {
+  public function __construct(string $table, $adpater) {
     require_once 'Encriptacion.php';
-    $this->table = (string) $table;
+    $this->table = $table;
     $this->connection = null;
     $this->db = $adpater;
   }
@@ -18,7 +18,7 @@ class EntityBase {
   }
 
   public function getAll() {
-    $query = $this->db->query("SELECT * FROM $this->table ORDER BY id DESC");
+    $query = $this->db->query("SELECT * FROM $this->table");
 
     while ($row = $query->fetch_object()) {
       $resultSet[] = $row;

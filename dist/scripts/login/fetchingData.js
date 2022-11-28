@@ -1,13 +1,19 @@
-import {createAlert} from './alert.js';
-const main = document.querySelector("main");
+import {el, createAlert} from './createElement.js';
+
+const notEmpety = (form) => {
+  const state = [];
+  for (const key of form.keys()) state.push(form.get(key));
+  return state.every(value => value !== "");
+};
 
 const sendInfoLogin = async e => {
   e.preventDefault();
   const form = new FormData(e.target);
 
-  if (form.get("password") !== "" && form.get("user") !== "") {
-    const message = (status,str) => main.appendChild(createAlert(status,str));
-    const elementAlert = document.querySelector(".alert");
+  if (notEmpety(form)) {
+    const main = el("main");
+    const message = (status,text) => main.appendChild(createAlert(status,text));
+    const elementAlert = el(".alert");
     if (elementAlert !== null) main.removeChild(elementAlert);
     const datas = await fetch("index.php?controller=Login&action=login", {
       method: "POST",
@@ -19,14 +25,16 @@ const sendInfoLogin = async e => {
     message(status,"Usuario Verificado");
     setTimeout(() => window.location = 'index.php?controller=User&action=index', 1000);
   }
-}
+};
 
-const sendInfoSign = async e => {
+const sendInfoSignUp = async e => {
   e.preventDefault();
   const form = new FormData(e.target);
-  if (form.get("fullName") !== "") {
-    const message = (status,str) => main.appendChild(createAlert(status,str));
-    const elementAlert = document.querySelector(".alert");
+
+  if (notEmpety(form)) {
+    const main = el("main");
+    const message = (status,text) => main.appendChild(createAlert(status,text));
+    const elementAlert = el(".alert");
     if (elementAlert !== null) main.removeChild(elementAlert);
     const datas = await fetch("index.php?controller=Login&action=create", {
       method: "POST",
@@ -38,9 +46,9 @@ const sendInfoSign = async e => {
       setTimeout(() => window.location = 'index.php?controller=User&action=index', 1000);
     }
   }
-}
+};
 
 export {
   sendInfoLogin,
-  sendInfoSign
+  sendInfoSignUp
 }
