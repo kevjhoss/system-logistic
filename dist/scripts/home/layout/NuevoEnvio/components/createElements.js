@@ -1,6 +1,6 @@
 import {create,getValue} from '../../components/globalFunctions.js';
 
-const createSelect = data => {
+const createSelect = (data, tst) => {
   const select = create("select");
   select.name = data.name;
   select.addEventListener("click", data.keyUp);
@@ -27,7 +27,7 @@ const createSelect = data => {
   select.addEventListener("click", async () => {
     const sucursal = select.nextElementSibling.nextElementSibling;
     const content = new DocumentFragment();
-    const values = await data.function(getValue("provincia-origen"));
+    const values = await data.function(getValue(tst));
     for (const value of values) {
       const options = create("option");
       options.value = value;

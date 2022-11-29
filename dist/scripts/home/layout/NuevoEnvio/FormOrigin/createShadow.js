@@ -15,7 +15,7 @@ class FormOrigin extends HTMLElement {
       label.textContent = data.label;
       content.appendChild(label);
       if (data.element === "select") {
-        content.appendChild(createSelect(data))
+        content.appendChild(createSelect(data, "provincia-origen"))
         continue;
       }
       const input = create("input");

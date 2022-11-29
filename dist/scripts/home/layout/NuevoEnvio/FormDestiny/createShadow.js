@@ -14,7 +14,7 @@ export class FormDestiny extends HTMLElement {
       label.textContent = data.label;
       content.appendChild(label);
       if (data.element === "select") {
-        content.appendChild(createSelect(data));
+        content.appendChild(createSelect(data, "provincia-destino"));
         continue;
       }
       if (data.element === "textarea") {
