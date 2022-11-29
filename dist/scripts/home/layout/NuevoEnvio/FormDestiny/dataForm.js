@@ -89,7 +89,6 @@ const formBranchDelivery = [
     name: "sucursal",
     text: getValue("sucursal"),
     keyUp: setValue("sucursal"),
-    options: await getProvinces(),
   },
   {
     element: "textarea",
