@@ -8,7 +8,7 @@ const getProvinces = async () => {
 }
 
 const getSucursal = async (province) => {
-  const data = await fetch("http://localhost:3500", {
+  const data = await fetch("https://api-sucursal.deno.dev/getSucursal", {
     method: "POST",
     body: province()
   });
