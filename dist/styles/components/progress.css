@@ -4,9 +4,10 @@ div {
   place-items: center;
   justify-content: center;
   position: relative;
-  width: 100%;
+  width: 40em;
   height: 5em;
   padding-top: 2em;
+  margin: 0 auto;
 }
 
 div::before {
@@ -16,7 +17,7 @@ div::before {
   background-color: hsl(0,0%,0%);
   top: 2.19em;
   height: .2em;
-  width: 48%;
+  width: 100%;
 }
 
 span {

@@ -1,5 +1,5 @@
 import {getValue,setValue} from '../../components/globalFunctions.js';
-import {getProvinces} from '../fetchingData.js';
+import {getProvinces, getSucursal} from '../fetchingData.js';
 
 export const formOrigin = [
   {
@@ -20,7 +20,8 @@ export const formOrigin = [
     name: "province",
     text: getValue("provincia-origen"),
     keyUp: setValue("provincia-origen"),
-    options: await getProvinces()
+    options: await getProvinces(),
+    function: getSucursal
   },
   {
     element: "select",
@@ -28,6 +29,5 @@ export const formOrigin = [
     name: "branch-office",
     text: getValue("sucursal-origen"),
     keyUp: setValue("sucursal-origen"),
-    options: await getProvinces()
   },
 ];

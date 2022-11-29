@@ -1,5 +1,5 @@
 import {getValue, setValue} from "../../components/globalFunctions.js";
-import {getProvinces} from '../fetchingData.js';
+import {getProvinces, getSucursal} from '../fetchingData.js';
 
 const formHomeDelivery = [
   {
@@ -30,9 +30,9 @@ const formHomeDelivery = [
     element: "select",
     label: "Provincia",
     name: "provincia",
-    text: getValue("provincia"),
-    keyUp: setValue("provincia"),
-    options: await getProvinces()
+    text: getValue("provincia-destino"),
+    keyUp: setValue("provincia-destino"),
+    options: await getProvinces(),
   },
   {
     element: "textarea",
@@ -78,16 +78,10 @@ const formBranchDelivery = [
     element: "select",
     label: "Provincia",
     name: "provincia",
-    text: getValue("provincia"),
-    keyUp: setValue("provincia"),
-    options: await getProvinces()
-  },
-  {
-    element: "textarea",
-    label: "Observaciones del domicilio",
-    name: "observaciones",
-    text: getValue("observaciones"),
-    keyUp: setValue("observaciones")
+    text: getValue("provincia-destino"),
+    keyUp: setValue("provincia-destino"),
+    options: await getProvinces(),
+    function: getSucursal
   },
   {
     element: "select",
@@ -95,7 +89,14 @@ const formBranchDelivery = [
     name: "sucursal",
     text: getValue("sucursal"),
     keyUp: setValue("sucursal"),
-    options: await getProvinces()
+    options: await getProvinces(),
+  },
+  {
+    element: "textarea",
+    label: "Observaciones del domicilio",
+    name: "observaciones",
+    text: getValue("observaciones"),
+    keyUp: setValue("observaciones")
   },
   {
     label: "Cod. Area",

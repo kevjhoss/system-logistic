@@ -1,4 +1,4 @@
-import {create} from '../../components/globalFunctions.js';
+import {create,getValue} from '../../components/globalFunctions.js';
 
 const createSelect = data => {
   const select = create("select");
@@ -12,12 +12,31 @@ const createSelect = data => {
   option.textContent = "Seleccionar....";
   if (data.text() !== "") option.textContent = data.text();
   select.appendChild(option);
-  for (const province of data.options) {
+
+  if (data.options === undefined && data.function === undefined) return select;
+
+  for (const datas of data.options) {
     const option = create("option");
-    option.value = province.name_province;
-    option.textContent = province.name_province;
+    option.value = datas.name_province;
+    option.textContent = datas.name_province;
     select.appendChild(option);
   }
+
+  if (data.function === undefined) return select
+
+  select.addEventListener("click", async () => {
+    const sucursal = select.nextElementSibling.nextElementSibling;
+    const content = new DocumentFragment();
+    const values = await data.function(getValue("provincia-origen"));
+    for (const value of values) {
+      const options = create("option");
+      options.value = value;
+      options.textContent = value;
+      content.appendChild(options)
+    }
+    sucursal.innerHTML = "";
+    sucursal.appendChild(content);
+  });
   return select
 }
 

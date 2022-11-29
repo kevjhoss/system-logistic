@@ -7,6 +7,15 @@ const getProvinces = async () => {
   return provinces;
 }
 
+const getSucursal = async (province) => {
+  const data = await fetch("http://localhost:3500", {
+    method: "POST",
+    body: province()
+  });
+  const values = await data.json();
+  return values;
+}
+
 const saveShipping = async () => {
   const form = new FormData();
   form.append("peso", getValue("peso"));
@@ -68,5 +77,6 @@ const saveDetails = async e => {
 
 export {
   saveDetails,
-  getProvinces
+  getProvinces,
+  getSucursal
 }
