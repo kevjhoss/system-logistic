@@ -1,4 +1,4 @@
-import {create, replace, el} from '../components/globalFunctions.js';
+import {create, replace, el} from "../components/globalFunctions.js";
 
 export const renderLayout = () => {
   const section = create("section");

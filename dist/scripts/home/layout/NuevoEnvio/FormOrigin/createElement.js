@@ -1,5 +1,5 @@
-import {create} from '../components/globalFunctions.js';
-import {getProvinces, getSucursal} from './fetchingData.js';
+import {create} from '../../components/globalFunctions.js';
+import {getProvinces,getSucursal} from './fetchingData.js';
 
 const createOptionsProvinces = async select => {
   const values = await getProvinces();
@@ -26,6 +26,6 @@ const createOptionsSucursal = async select => {
 }
 
 export {
-  createOptionsProvinces,
   createOptionsSucursal,
+  createOptionsProvinces
 }

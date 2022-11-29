@@ -1,34 +1,5 @@
-import {createOptionsProvinces,createOptionsSucursal} from './createElement.js';
-import {setValue,getValue} from './functions.js';
-
-const formOrigin = [
-  {
-    label: "Nombre y Apellido",
-    name: "full-name",
-    type: "input",
-    text: getValue("full-name"),
-    keyUp: setValue("full-name")
-  },
-  {
-    label: "Correo electrónico",
-    name: "email",
-    type: "input",
-    text: getValue("email"),
-    keyUp: setValue("email")
-  },
-  {
-    label: "Provincia",
-    name: "province",
-    type: "select",
-    create: createOptionsProvinces
-  },
-  {
-    label: "Sucursal",
-    name: "branch-office",
-    type: "select",
-    create: createOptionsSucursal
-  },
-];
+import {getValue, setValue} from "../../components/globalFunctions.js";
+import {getProvinces} from '../fetchingData.js';
 
 const formHomeDelivery = [
   {
@@ -56,10 +27,19 @@ const formHomeDelivery = [
     keyUp: setValue("localidad")
   },
   {
+    element: "select",
     label: "Provincia",
     name: "provincia",
     text: getValue("provincia"),
-    keyUp: setValue("provincia")
+    keyUp: setValue("provincia"),
+    options: await getProvinces()
+  },
+  {
+    element: "textarea",
+    label: "Observaciones del domicilio",
+    name: "observaciones",
+    text: getValue("observaciones"),
+    keyUp: setValue("observaciones")
   },
   {
     label: "CP",
@@ -95,16 +75,27 @@ const formBranchDelivery = [
     keyUp: setValue("nombre-destinatario")
   },
   {
+    element: "select",
     label: "Provincia",
     name: "provincia",
     text: getValue("provincia"),
-    keyUp: setValue("provincia")
+    keyUp: setValue("provincia"),
+    options: await getProvinces()
   },
   {
+    element: "textarea",
+    label: "Observaciones del domicilio",
+    name: "observaciones",
+    text: getValue("observaciones"),
+    keyUp: setValue("observaciones")
+  },
+  {
+    element: "select",
     label: "Sucursal de destino",
     name: "sucursal",
     text: getValue("sucursal"),
-    keyUp: setValue("sucursal")
+    keyUp: setValue("sucursal"),
+    options: await getProvinces()
   },
   {
     label: "Cod. Area",
@@ -126,42 +117,7 @@ const formBranchDelivery = [
   }
 ];
 
-const formShipment = [
-  {
-    label: "Peso",
-    name: "peso",
-    text: getValue("peso"),
-    keyUp: setValue("peso")
-  },
-  {
-    label: "Alto",
-    name: "alto",
-    text: getValue("alto"),
-    keyUp: setValue("alto")
-  },
-  {
-    label: "Largo",
-    name: "largo",
-    text: getValue("largo"),
-    keyUp: setValue("largo")
-  },
-  {
-    label: "Ancho",
-    name: "ancho",
-    text: getValue("ancho"),
-    keyUp: setValue("ancho")
-  },
-  {
-    label: "Costo",
-    name: "costo",
-    text: getValue("costo"),
-    keyUp: setValue("costo")
-  },
-]
-
 export {
-  formOrigin,
   formHomeDelivery,
-  formBranchDelivery,
-  formShipment
+  formBranchDelivery
 }

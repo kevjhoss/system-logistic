@@ -77,8 +77,33 @@ ul > li:hover {
 }
 
 /* Snipper Recarga */
-section > .snipper {
+#box-snipper {
+  grid-column: m-s/m-e;
+  display: grid;
+  height: 20em;
+}
+
+#box-snipper > .snipper {
   position: absolute;
+  display: block;
+  width: 8em;
+  height: 8em;
+  border: 10px solid #222;
+  border-top: 10px solid steelblue;
+  border-radius: 50%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  animation-name: lazy;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+#box-snipper > .snipper-form {
+  position: relative;
   display: block;
   width: 8em;
   height: 8em;
@@ -109,6 +134,7 @@ section > .snipper {
 #box-envio {
   display: grid;
   padding: 1.2em 18em;
+  margin-bottom: 5em;
 }
 
 content-origin, content-destiny, content-shipment {
@@ -131,7 +157,7 @@ content-origin, content-destiny, content-shipment {
   border: .1em solid hsl(0,0%,5%);
   border-radius: .6em;
   font-family: 'Open-Sans';
-  font-size: 1rem;
+  font-size: .85rem;
   width: 13.8em;
   padding: .5em 0;
   transition: background-color .25s ease, color .25s ease;
@@ -155,6 +181,15 @@ content-origin, content-destiny, content-shipment {
 
 .btn--action {
   background-color: hsl(226.9, 65%, 23.5%);
+  border: none;
+  border-radius: .4em;
+  width: 9em;
+  padding: .25em 0;
+}
+
+
+.btn--cancel {
+  background-color: hsl(0, 100%, 50%);
   border: none;
   border-radius: .4em;
   width: 9em;

@@ -1,18 +1,11 @@
-import { el } from "../components/globalFunctions.js";
+import {el} from "../components/globalFunctions.js";
+const getValue = value => localStorage.getItem(value);
 
 const getProvinces = async () => {
-  //const datas = await fetch("index.php?controller=User&action=getProvince");
-  //const values = await datas.json();
-  return [];
+  const datas = await fetch("index.php?controller=User&action=getProvince");
+  const provinces = await datas.json();
+  return provinces;
 }
-
-const getSucursal = async () => {
-  //const datas = await fetch("index.php?controller=User&action=getSucursal");
-  //const values = await datas.json();
-  return [];
-}
-
-const getValue = value => localStorage.getItem(value);
 
 const saveShipping = async () => {
   const form = new FormData();
@@ -49,7 +42,8 @@ const saveAddressee = async () => {
   return values.id;
 }
 
-const saveDetails = async () => {
+const saveDetails = async e => {
+  e.preventDefault();
   const {renderLayout} = await import("../MisEnvios/createBox.js");
   const idAddressee = await saveAddressee();
   const idShipping = await saveShipping();
@@ -73,7 +67,6 @@ const saveDetails = async () => {
 }
 
 export {
-  getProvinces,
-  getSucursal,
-  saveDetails
+  saveDetails,
+  getProvinces
 }

@@ -7,7 +7,10 @@ div {
 
 label {
   grid-column: m-s/c-s;
-  justify-self: end;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  text-align: right;
   font-family: 'Open-Sans';
 }
 
@@ -17,7 +20,28 @@ input {
   border: .1em solid hsl(0,0%,0%);
   border-radius: .35em;
   font-family: 'Open-Sans';
+  font-size: .9rem;
   padding: .3em 1em;
+}
+
+textarea {
+  grid-column: c-s/m-e;
+  outline: none;
+  resize: vertical;
+  border: .1em solid hsl(0,0%,0%);
+  border-radius: .35em;
+  font-family: 'Open-Sans';
+  font-size: .9rem;
+  height: 4.5em;
+  padding: .5em 1em;
+}
+
+select {
+  grid-column: c-s/m-e;
+  border: .1em solid hsl(0,0%,0%);
+  border-radius: .35em;
+  font-family: 'Open-Sans';
+  padding: .5em 1em;
 }
 
 label[for=codigo-area] {
