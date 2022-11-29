@@ -9,7 +9,7 @@ export class Progress extends HTMLElement {
     origen.textContent = "ORIGEN";
     if (this.state === "is-active-origen") origen.classList.add(this.state);
     const destino = document.createElement("span");
-    destino.textContent = "DESTINO"
+    destino.textContent = "DESTINATARIO"
     if (this.state === "is-active-destino") destino.classList.add(this.state);
     const envio = document.createElement("span");
     envio.textContent = "ENVIO";
