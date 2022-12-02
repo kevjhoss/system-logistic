@@ -121,6 +121,33 @@ ul > li:hover {
   animation-timing-function: linear;
 }
 
+#box-snipper-pay {
+  display: grid;
+  background-color: dodgerblue;
+  border-radius: 1.5em;
+  width: 70%;
+  height: 30em;
+}
+
+#box-snipper-pay > .snipper {
+  position: absolute;
+  display: block;
+  width: 8em;
+  height: 8em;
+  border: 10px solid hsl(0,0%,100%);
+  border-top: 10px solid hsl(0,0%,0%);
+  border-radius: 50%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  animation-name: lazy;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
 @keyframes lazy {
   from {
     transform: rotate(0deg);
@@ -210,4 +237,98 @@ content-origin, content-destiny, content-shipment {
 .btn-prev--grid {
   grid-column: m-s/c-s;
   justify-self: center;
+}
+
+.btn--pay {
+  background: hsl(226.9, 65%, 23.5%);
+  border-radius: .25em;
+  width: 100%;
+  height: 100%;
+}
+
+.btn--pay > .mercadopago-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: hsl(226.9, 65%, 23.5%);
+  line-height: 0;
+  font-family: 'Open-Sans';
+  font-size: 1rem;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  cursor: default;
+}
+
+/* Payment Styles */
+.container__payment {
+  display: none;
+  place-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#form-checkout {
+  display: grid;
+  grid-template-columns: [m-s]1fr 1fr 1fr[m-e];
+  background-color: dodgerblue;
+  border-radius: 1.5em;
+  width: 70%;
+  height: 30em;
+  padding: 1.5em 2em;
+}
+
+.form-control {
+  height: 2em;
+  grid-column: m-s/m-e;
+  color: hsl(0,0%,0%);
+  font-family: 'Open-Sans';
+  font-size: 1rem;
+}
+
+input.form-control {
+  outline: none;
+  border: none;
+  background: none;
+  border-bottom: .15em solid hsl(0,0%,100%);
+  padding-left: .5em;
+}
+
+select.form-control {
+  color: hsl(0,0%,0%);
+}
+
+div.form-control {
+  border-bottom: .15em solid hsl(0,0%,100%);
+}
+
+#form-checkout__submit {
+  grid-column: m-s/m-e;
+  font-family: 'Open-Sans';
+  font-size: 1rem;
+}
+
+.validation-error-messages {
+  display: none;
+}
+
+#container__result {
+  display: none;
+  place-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#success-response {
+  display: none;
+  grid-template-columns: [m-s]1fr[m-e];
+  background-color: dodgerblue;
+  border-radius: 1.5em;
+  width: 70%;
+  height: 30em;
+  padding: 1.5em 2em;
 }

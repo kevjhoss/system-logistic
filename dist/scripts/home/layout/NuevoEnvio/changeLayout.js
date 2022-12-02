@@ -8,9 +8,14 @@ const layoutBranch = async e => {
   const form = el("#box-envio");
   form.replaceChild(new FormDestiny(formBranchDelivery), el("content-destiny"));
   localStorage.setItem("branch", "is-active");
+  //Remove localStorage
   localStorage.removeItem("domicilio");
+  localStorage.removeItem("numero-documento");
+  localStorage.removeItem("direccion");
+  localStorage.removeItem("localidad");
+  localStorage.removeItem("codigo-postal");
   btnBranch.classList.add("is-active");
-  btnHome.classList.remove("is-active")
+  btnHome.classList.remove("is-active");
 };
 
 const layoutHome = async e => {
@@ -21,7 +26,10 @@ const layoutHome = async e => {
   const form = el("#box-envio");
   form.replaceChild(new FormDestiny(formHomeDelivery), el("content-destiny"));
   localStorage.setItem("domicilio", "is-active");
+  //remove lacalStorage
   localStorage.removeItem("branch");
+  localStorage.removeItem("sucursal-destino");
+
   btnHome.classList.add("is-active");
   btnBranch.classList.remove("is-active")
 };

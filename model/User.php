@@ -54,6 +54,27 @@ class User extends EntityBase {
     $this->password = $password;
   }
 
+  public function getDataUser() {
+    $query = "SELECT * FROM Clientes WHERE correo_electronico='" . $_SESSION['user'] . "'";
+    $result = $this->db()->query($query);
+    while ($row = $result->fetch_object()) {
+      $data = $row;
+    }
+    $resultSet = [[
+      "id_cliente" => $data->id_cliente,
+      "nombre_cliente" => $data->nombre_cliente,
+      "numero_documento" => $data->numero_documento,
+      "direccion" => $data->direccion,
+      "localidad" => $data->localidad,
+      "provincia" => $data->provincia,
+      "codigo_postal" => $data->codigo_postal,
+      "telefono" => $data->telefono,
+      "correo_electronico" => $data->correo_electronico,
+      "password" => $this->pass->desencriptar($data->password)
+    ]];
+    return $resultSet;
+  }
+
   public function save() {
     $pass_hashed = $this->pass->encriptar($this->password);
     $query = "INSERT INTO Clientes (nombre_cliente, numero_documento, direccion, localidad, provincia, codigo_postal, telefono, correo_electronico, password)

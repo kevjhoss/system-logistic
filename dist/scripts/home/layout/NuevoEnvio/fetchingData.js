@@ -1,4 +1,5 @@
 import {el} from "../components/globalFunctions.js";
+
 const getValue = value => localStorage.getItem(value);
 
 const getProvinces = async () => {
@@ -23,6 +24,11 @@ const saveShipping = async () => {
   form.append("ancho", getValue("ancho"));
   form.append("largo", getValue("largo"));
   form.append("costo", getValue("costo"));
+  form.append("provincia-origen", getValue("provincia-origen"));
+  form.append("sucursal-origen", getValue("sucursal-origen"));
+  form.append("tipo-envio", getValue("domicilio") === null ? "sucursal" : "domicilio");
+  form.append("metodo-pago", "mercado pago");
+  form.append("estado", "Completo");
 
   const datas = await fetch("index.php?controller=User&action=saveEnvio", {
     method: "POST",
@@ -38,10 +44,12 @@ const saveAddressee = async () => {
   form.append("numero-documento", getValue("numero-documento"));
   form.append("direccion", getValue("direccion"));
   form.append("localidad", getValue("localidad"));
-  form.append("provincia", getValue("provincia"));
+  form.append("provincia", getValue("provincia-destino"));
   form.append("codigo-postal", getValue("codigo-postal"));
   form.append("telefono", getValue("telefono"));
   form.append("correo-electronico", getValue("correo-electronico"));
+  form.append("observaciones", getValue("observaciones"));
+  form.append("sucursal", getValue("sucursal-destino"));
 
   const datas = await fetch("index.php?controller=User&action=saveAddressee", {
     method: "POST",
@@ -51,9 +59,7 @@ const saveAddressee = async () => {
   return values.id;
 }
 
-const saveDetails = async e => {
-  e.preventDefault();
-  const {renderLayout} = await import("../MisEnvios/createBox.js");
+const saveDetails = async () => {
   const idAddressee = await saveAddressee();
   const idShipping = await saveShipping();
   const form = new FormData();
@@ -65,14 +71,12 @@ const saveDetails = async e => {
     body: form
   });
 
-  const n = el(".active-link");
+  /*const n = el(".active-link");
   n.classList.remove("active-link");
 
   const mis = el(".misenvios").parentNode;
-  mis.classList.add("active-link");
-
+  mis.classList.add("active-link");*/
   localStorage.clear();
-  renderLayout();
 }
 
 export {

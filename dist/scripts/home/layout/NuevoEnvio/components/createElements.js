@@ -13,21 +13,22 @@ const createSelect = (data, tst) => {
   if (data.text() !== "") option.textContent = data.text();
   select.appendChild(option);
 
-  if (data.options === undefined && data.function === undefined) return select;
+  if (data.getProvinces === undefined) return select;
 
-  for (const datas of data.options) {
+  for (const province of data.getProvinces) {
     const option = create("option");
-    option.value = datas.name_province;
-    option.textContent = datas.name_province;
+    option.value = province.name_province;
+    option.textContent = province.name_province;
     select.appendChild(option);
   }
 
-  if (data.function === undefined) return select
+  if (data.getSucursal === undefined) return select
 
-  select.addEventListener("click", async () => {
+  select.addEventListener("click", async e => {
+    if (e.target.nodeName == "SELECT") return null;
     const sucursal = select.nextElementSibling.nextElementSibling;
     const content = new DocumentFragment();
-    const values = await data.function(getValue(tst));
+    const values = await data.getSucursal(getValue(tst));
     for (const value of values) {
       const options = create("option");
       options.value = value;

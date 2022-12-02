@@ -27,7 +27,7 @@ export const formShipment = [
     keyUp: setValue("ancho")
   },
   {
-    label: "Costo",
+    label: "Costo de referencia",
     name: "costo",
     text: getValue("costo"),
     keyUp: setValue("costo")

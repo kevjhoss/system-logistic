@@ -1,4 +1,4 @@
-import {el,createButton} from '../components/globalFunctions.js';
+import {el,createButton, create} from '../components/globalFunctions.js';
 import {insertButtons} from './changeLayout.js';
 import {Progress} from '../NuevoEnvio/components/progress.js';
 import {snipper} from '../components/Snipper.js';
@@ -86,6 +86,8 @@ const next = async () => {
   }
 
   if (el("content-destiny") !== null) {
+
+    const {loadCardForm} = await import('./mercadoPago.js');
     form.replaceChild(snipper("snipper-form"), el("content-destiny"));
 
     const {FormShipment} = await import("./FormShipment/createShadow.js");
@@ -96,9 +98,11 @@ const next = async () => {
     while(el(".btn--box")) {
       form.removeChild(el(".btn--box"))
     };
-    const btnSave = createButton("submit", "Guardar Envio");
-    btnSave.classList.add("btn--action", "btn-action--text", "btn-next--grid");
-    return form.replaceChild(btnSave, el(".btn-next--grid"));
+    const btnPay = createButton("button", "Cotizar y Pagar");
+    btnPay.textContent = "Cotizar y pagar";
+    btnPay.classList.add("btn--action", "btn-action--text", "btn-next--grid");
+    btnPay.addEventListener("click", loadCardForm)
+    return form.replaceChild(btnPay, el(".btn-next--grid"));
   }
 }
 

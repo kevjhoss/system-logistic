@@ -20,8 +20,8 @@ export const formOrigin = [
     name: "province",
     text: getValue("provincia-origen"),
     keyUp: setValue("provincia-origen"),
-    options: await getProvinces(),
-    function: getSucursal
+    getProvinces: await getProvinces(),
+    getSucursal: getSucursal
   },
   {
     element: "select",

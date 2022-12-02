@@ -32,7 +32,7 @@ const formHomeDelivery = [
     name: "provincia",
     text: getValue("provincia-destino"),
     keyUp: setValue("provincia-destino"),
-    options: await getProvinces(),
+    getProvinces: await getProvinces(),
   },
   {
     element: "textarea",
@@ -80,15 +80,15 @@ const formBranchDelivery = [
     name: "provincia",
     text: getValue("provincia-destino"),
     keyUp: setValue("provincia-destino"),
-    options: await getProvinces(),
-    function: getSucursal
+    getProvinces: await getProvinces(),
+    getSucursal: getSucursal
   },
   {
     element: "select",
     label: "Sucursal de destino",
     name: "sucursal",
-    text: getValue("sucursal"),
-    keyUp: setValue("sucursal"),
+    text: getValue("sucursal-destino"),
+    keyUp: setValue("sucursal-destino"),
   },
   {
     element: "textarea",

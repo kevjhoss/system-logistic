@@ -12,6 +12,12 @@ final class UserController extends ControllerBase {
     $this->view("home");
   }
 
+  public function getUserInfo() {
+    $user = new User("Clientes", $this->adapter);
+    $result = $user->getDataUser();
+    die(json_encode($result));
+  }
+
   public function getProvince() {
     $user = new User("province", $this->adapter);
     $result = $user->getAll();
@@ -31,6 +37,11 @@ final class UserController extends ControllerBase {
     $user->setAncho($_POST["ancho"]);
     $user->setLargo($_POST["largo"]);
     $user->setCosto($_POST["costo"]);
+    $user->setProvince($_POST["provincia-origen"]);
+    $user->setSucursal($_POST["sucursal-origen"]);
+    $user->setTipo($_POST["tipo-envio"]);
+    $user->setPago($_POST["metodo-pago"]);
+    $user->setEstado($_POST["estado"]);
     $status = $user->save();
     die(json_encode($status));
   }
@@ -45,6 +56,8 @@ final class UserController extends ControllerBase {
     $user->setCP($_POST["codigo-postal"]);
     $user->setPhone($_POST["telefono"]);
     $user->setEmail($_POST["correo-electronico"]);
+    $user->setObservaciones($_POST["observaciones"]);
+    $user->setSucursal($_POST["sucursal"]);
     $save = $user->save();
     die(json_encode($save));
   }
