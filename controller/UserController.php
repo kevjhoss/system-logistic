@@ -13,7 +13,7 @@ final class UserController extends ControllerBase {
   }
 
   public function getUserInfo() {
-    $user = new User("Clientes", $this->adapter);
+    $user = new User("clientes", $this->adapter);
     $result = $user->getDataUser();
     die(json_encode($result));
   }
