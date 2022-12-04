@@ -39,12 +39,11 @@ class EntityBase {
 
   public function getByEmail($email) {
     $query = $this->db->query("SELECT * FROM $this->table WHERE correo_electronico='$email'");
-    $resultSet = [];
 
     while ($row = $query->fetch_object()) {
       $resultSet[] = $row;
     }
-    return $resultSet;
+    return $resultSet ?? null;
   }
 
   public function getBy($column, $value) {
