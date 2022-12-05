@@ -2,6 +2,8 @@ CREATE DATABASE dblogistica;
 
 USE dblogistica;
 
+SET time_zone = '-03:00';
+
 CREATE TABLE clientes (
   id_cliente int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   nombre_cliente varchar(50) NOT NULL,
@@ -26,7 +28,8 @@ CREATE TABLE envios (
   sucursal_origen varchar(50) NOT NULL,
   tipo_envio varchar(50) NOT NULL,
   metodo_pago varchar(50) NOT NULL,
-  estado varchar(50) NOT NULL
+  estado varchar(50) NOT NULL,
+  fecha TIMESTAMP NOT NULL DEFAULT CURRENT_DATE,
 );
 
 CREATE TABLE destinatarios (

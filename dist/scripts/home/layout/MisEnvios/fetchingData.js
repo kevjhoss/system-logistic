@@ -6,7 +6,7 @@ const getShipment = async () => {
     body: form
   });
   const values = await datas.json();
-  console.log(values);
+  return values;
 }
 
 export {
