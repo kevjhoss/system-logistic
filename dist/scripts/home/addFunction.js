@@ -36,6 +36,10 @@ const addEvents = async (element) => {
       if (a.innerText === "Mis Envios") {
         localStorage.clear();
         localStorage.setItem("domicilio", "is-active");
+        const data  = await getUserData();
+        for (const key in data) {
+          if (key === "id_cliente") localStorage.setItem(key, data[key]);
+        }
         const {renderLayout} = await import("./layout/MisEnvios/createBox.js");
         return renderLayout()
       }
