@@ -70,7 +70,6 @@ const saveDetails = async () => {
     method: "POST",
     body: form
   });
-  localStorage.clear();
 }
 
 export {

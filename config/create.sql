@@ -29,7 +29,7 @@ CREATE TABLE envios (
   tipo_envio varchar(50) NOT NULL,
   metodo_pago varchar(50) NOT NULL,
   estado varchar(50) NOT NULL,
-  fecha TIMESTAMP NOT NULL DEFAULT CURRENT_DATE,
+  fecha TIMESTAMP NOT NULL DEFAULT CURRENT_DATE
 );
 
 CREATE TABLE destinatarios (
