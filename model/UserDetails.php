@@ -20,6 +20,23 @@ class UserDetails extends EntityBase {
     $this->id_shipping = $id_shipping;
   }
 
+  public function getDetailsEnvios($id_cliente) {
+    $query = "SELECT E.*,DS.* FROM detalle_envios AS detail
+              INNER JOIN envios AS E
+              ON detail.id_envio = E.id_envio
+              INNER JOIN destinatarios AS DS
+              ON detail.id_destinatario = DS.id_destinatario
+              INNER JOIN clientes AS C
+              ON detail.id_cliente = C.id_cliente
+              WHERE C.id_cliente = $id_cliente";
+    $result = $this->db()->query($query);
+    while ($row = $result->fetch_object()) {
+      $resultSet[] = $row;
+    }
+    return $resultSet;
+   
+  }
+
   public function save() {
     $query = "INSERT INTO detalle_envios (id_cliente, id_destinatario, id_envio)
               VALUES (

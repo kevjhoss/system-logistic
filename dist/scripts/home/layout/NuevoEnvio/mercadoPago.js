@@ -115,7 +115,7 @@ function loadCardForm() {
                     el("#payment-status").innerText = result.status;
                     el("#payment-detail").innerText = result.detail;
                     //ADD FUNCTIONS TOOL
-                    //saveDetails();
+                    saveDetails();
                     el(".btn-close.is-result").addEventListener("click", () => {
                         el("#container__result").style.display = "none";
                         el("#success-response").style.display = "none";

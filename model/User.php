@@ -91,6 +91,7 @@ class User extends EntityBase {
     $save = $this->db()->query($query);
     return ['status' => $save];
   }
+
   public function update() {
     $query = "UPDATE users SET
               name=\"$this->name\",

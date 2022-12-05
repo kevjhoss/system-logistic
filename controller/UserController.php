@@ -13,7 +13,7 @@ final class UserController extends ControllerBase {
   }
 
   public function getUserInfo() {
-    $user = new User('clientes', $this->adapter);
+    $user = new User('', $this->adapter);
     $result = $user->getDataUser();
     die(json_encode($result));
   }
@@ -27,6 +27,12 @@ final class UserController extends ControllerBase {
   public function getSucursal() {
     $user = new User('sucursal', $this->adapter);
     $result = $user->getAll();
+    die(json_encode($result));
+  }
+
+  public function getDetails() {
+    $user = new UserDetails('', $this->adapter);
+    $result = $user->getDetailsEnvios($_POST['id_cliente']);
     die(json_encode($result));
   }
 
