@@ -1,6 +1,6 @@
 <?php include "./view/components/Icons.php";?>
 <nav>
-  <?php echo Icons('logo', '3em', 'hsl(0,0%,100%)')?>
+  <img src="/dist/images/logo-logistica.png"/>
   <ul>
     <li class='active-link'>
       <a href="index.php?controller=User&action=panel" class='panel' >
@@ -24,6 +24,12 @@
       <a href="index.php?controller=User&action=cuenta" class='cuenta'>
         <?php echo Icons('account', '1em', 'hsl(0,0%,100%)')?>
         Mi Cuenta
+      </a>
+    </li>
+    <li>
+      <a href="index.php?controller=Use&exit=true" class='close'>
+        <?php echo Icons('close', '1em', 'hsl(0,0%,100%)')?>
+        Cerrar Sesion
       </a>
     </li>
   </ul>

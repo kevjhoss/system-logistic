@@ -1,7 +1,7 @@
-import {el,createButton, create} from '../components/globalFunctions.js';
-import {insertButtons} from './changeLayout.js';
-import {Progress} from '../NuevoEnvio/components/progress.js';
-import {snipper} from '../components/Snipper.js';
+import { el, createButton, create } from '../components/globalFunctions.js';
+import { insertButtons } from './changeLayout.js';
+import { Progress } from '../NuevoEnvio/components/progress.js';
+import { snipper } from '../components/Snipper.js';
 
 const clearData = async () => {
   const section = el("section");
@@ -9,16 +9,16 @@ const clearData = async () => {
   localStorage.clear();
   localStorage.setItem("domicilio", "is-active");
   if (el("content-destiny") !== null) {
-    const {FormOrigin} = await import("./FormOrigin/createShadow.js");
+    const { FormOrigin } = await import("./FormOrigin/createShadow.js");
     form.replaceChild(new FormOrigin, el("content-destiny"));
     section.replaceChild(new Progress("is-active-origen"), el("progress-barra"))
 
-    while(el(".btn--box")) form.removeChild(el(".btn--box"));
+    while (el(".btn--box")) form.removeChild(el(".btn--box"));
     form.removeChild(el(".btn--cancel"));
     return form.removeChild(el(".btn-prev--grid"));
   }
   if (el("content-shipment") !== null) {
-    const {FormOrigin} = await import("./FormOrigin/createShadow.js");
+    const { FormOrigin } = await import("./FormOrigin/createShadow.js");
     form.replaceChild(new FormOrigin, el("content-shipment"));
     section.replaceChild(new Progress("is-active-origen"), el("progress-barra"))
 
@@ -35,11 +35,11 @@ const prev = async () => {
   const section = el("section");
   const form = el("#box-envio");
   if (el("content-destiny") !== null) {
-    const {FormOrigin} = await import('./FormOrigin/createShadow.js')
+    const { FormOrigin } = await import('./FormOrigin/createShadow.js')
     form.replaceChild(new FormOrigin, el("content-destiny"));
     section.replaceChild(new Progress("is-active-origen"), el("progress-barra"))
 
-    while(el(".btn--box")) {
+    while (el(".btn--box")) {
       form.removeChild(el(".btn--box"));
     }
     form.removeChild(el(".btn--cancel"));
@@ -47,8 +47,8 @@ const prev = async () => {
   }
 
   if (el("content-shipment") !== null) {
-    const {FormDestiny} = await import("./FormDestiny/createShadow.js");
-    const {formHomeDelivery} = await import("./FormDestiny/dataForm.js");
+    const { FormDestiny } = await import("./FormDestiny/createShadow.js");
+    const { formHomeDelivery } = await import("./FormDestiny/dataForm.js");
     form.replaceChild(new FormDestiny(formHomeDelivery), el("content-shipment"));
     section.replaceChild(new Progress("is-active-destino"), el("progress-barra"))
 
@@ -66,9 +66,9 @@ const next = async () => {
   if (el("content-origin") !== null) {
     form.replaceChild(snipper("snipper-form"), el("content-origin"));
 
-    const {FormDestiny} = await import("./FormDestiny/createShadow.js");
-    const {formHomeDelivery} = await import("./FormDestiny/dataForm.js");
-    if(customElements.get("content-destiny") === undefined) customElements.define("content-destiny", FormDestiny);
+    const { FormDestiny } = await import("./FormDestiny/createShadow.js");
+    const { formHomeDelivery } = await import("./FormDestiny/dataForm.js");
+    if (customElements.get("content-destiny") === undefined) customElements.define("content-destiny", FormDestiny);
     form.replaceChild(new FormDestiny(formHomeDelivery), el("form > section"));
     section.replaceChild(new Progress("is-active-destino"), el("progress-barra"))
 
@@ -87,21 +87,26 @@ const next = async () => {
 
   if (el("content-destiny") !== null) {
 
-    const {loadCardForm} = await import('./mercadoPago.js');
     form.replaceChild(snipper("snipper-form"), el("content-destiny"));
 
-    const {FormShipment} = await import("./FormShipment/createShadow.js");
-    if(customElements.get("content-shipment") === undefined) customElements.define("content-shipment", FormShipment);
+    const { FormShipment } = await import("./FormShipment/createShadow.js");
+    if (customElements.get("content-shipment") === undefined) customElements.define("content-shipment", FormShipment);
     form.replaceChild(new FormShipment, el("form > section"));
     section.replaceChild(new Progress("is-active-envio"), el("progress-barra"))
 
-    while(el(".btn--box")) {
+    while (el(".btn--box")) {
       form.removeChild(el(".btn--box"))
     };
     const btnPay = createButton("button", "Cotizar y Pagar");
     btnPay.textContent = "Cotizar y pagar";
     btnPay.classList.add("btn--action", "btn-action--text", "btn-next--grid");
-    btnPay.addEventListener("click", loadCardForm)
+    btnPay.addEventListener("click", () => {
+      el(".container__payment").style.display = "grid";
+      el(".btn-close.is-payment").addEventListener("click", () => {
+        el(".container__payment").style.display = "none";
+        cardForm.unmount();
+      });
+    })
     return form.replaceChild(btnPay, el(".btn-next--grid"));
   }
 }

@@ -22,9 +22,11 @@ nav {
   height: 4em;
 }
 
-nav > svg {
+nav > img {
+  display: block;
   align-self: center;
   margin-left: 1.5em;
+  width: 15em;
 }
 
 nav > ul {

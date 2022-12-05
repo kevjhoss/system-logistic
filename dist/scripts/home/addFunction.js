@@ -48,6 +48,10 @@ const addEvents = async (element) => {
         localStorage.setItem("domicilio", "is-active");
         const {renderLayout} = await import("./layout/MiCuenta/createBox.js");
         return renderLayout()
+      };
+      if (a.innerText === "Cerrar Sesion") {
+        localStorage.clear();
+        location.href = "index.php?controller=User&exit=true";
       }
     };
   });
