@@ -2,6 +2,9 @@
 <div class="container__payment">
     <!-- Formulario -->
     <form id="form-checkout">
+        <button type="button" class="btn-close is-payment">
+            <?php echo Icons('close', '2.2em', 'hsl(0,100%,50%)')?>
+        </button>
         <input id="form-checkout__cardholderEmail" name="cardholderEmail" type="email" class="form-control" />
         <select id="form-checkout__identificationType" name="identificationType" class="form-control"></select>
         <input id="form-checkout__identificationNumber" name="docNumber" type="text" class="form-control" />
@@ -30,10 +33,12 @@
         <div class="snipper"></div>
     </div>
     <div id="success-response">
+        <button type="button" class="btn-close is-result">
+            <?php echo Icons('close', '2.2em', 'hsl(0,100%,50%)')?>
+        </button>
         <p><b>ID: </b><span id="payment-id"></span></p>
         <p><b>Status: </b><span id="payment-status"></span></p>
         <p><b>Detail: </b><span id="payment-detail"></span></p>
-        <button type="button">CERRAR PANEL</button>
-        <button type="button">IR A MIS ENVIOS</button>
+        <button type="button" class="btn-go-result">IR A MIS ENVIOS</button>
     </div>
 </div>

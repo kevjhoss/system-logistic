@@ -15,7 +15,7 @@ export const renderLayout = async () => {
   }
   const btn = create("button");
   btn.textContent = "Cerrar Sesion";
-  btn.addEventListener("click", () => location.reload("index.php?controller=User&action=exit"));
+  btn.addEventListener("click", () => location.href = "index.php?controller=User&exit=true");
   section.appendChild(h2);
   section.appendChild(content);
   section.appendChild(btn);

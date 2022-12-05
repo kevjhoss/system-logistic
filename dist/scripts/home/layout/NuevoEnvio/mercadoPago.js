@@ -1,7 +1,7 @@
 import {el} from '../components/globalFunctions.js';
 import {saveDetails} from './fetchingData.js';
 
-const mercadopago = new MercadoPago("TEST-19e49b4b-b052-4772-b531-29bbfbab6ca9")//, {
+const mercadopago = new MercadoPago("TEST-19e49b4b-b052-4772-b531-29bbfbab6ca9")
 
 function loadCardForm() {
     const productCost = "1000";
@@ -65,6 +65,10 @@ function loadCardForm() {
             onFormMounted: error => {
                 if (error) return console.warn("Form Mounted handling error: ", error);
                 el(".container__payment").style.display = "grid";
+                el(".btn-close.is-payment").addEventListener("click", () => {
+                    el(".container__payment").style.display = "none";
+                    cardForm.unmount();
+                });
             },
             onSubmit: async event => {
                 event.preventDefault();
@@ -82,7 +86,7 @@ function loadCardForm() {
                     identificationType,
                 } = cardForm.getCardFormData();
 
-                const datas = await fetch("http://localhost:8080/process_payment", {
+                const datas = await fetch("https://checkout-production.up.railway.app/process_payment", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -110,8 +114,25 @@ function loadCardForm() {
                     el("#payment-id").innerText = result.id;
                     el("#payment-status").innerText = result.status;
                     el("#payment-detail").innerText = result.detail;
-                    saveDetails();
-                    cardForm.unmount();
+                    //ADD FUNCTIONS TOOL
+                    //saveDetails();
+                    el(".btn-close.is-result").addEventListener("click", () => {
+                        el("#container__result").style.display = "none";
+                        el("#success-response").style.display = "none";
+                        cardForm.unmount();
+                    })
+
+                    el(".btn-go-result").addEventListener("click", async () => {
+                        const {renderLayout} = await import("../MisEnvios/createBox.js");
+                        renderLayout();
+                        el("#container__result").style.display = "none";
+                        el("#success-response").style.display = "none";
+                        const btn = el(".active-link");
+                        btn.classList.remove("active-link");
+                        const parent = el(".misenvios").parentNode;
+                        parent.classList.add("active-link");
+                        cardForm.unmount();
+                    })
                 } else {
                     el("#error-message").textContent = result.error_message;
                     el("#fail-response").style.display = "block";

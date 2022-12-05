@@ -1,5 +1,6 @@
 import {snipper} from './layout/components/Snipper.js';
 import {el} from './layout/components/globalFunctions.js';
+import {getUserData} from './layout/MiCuenta/fetchingData.js';
 
 const addEvents = async (element) => {
   element.addEventListener("click", async e => {
@@ -21,6 +22,14 @@ const addEvents = async (element) => {
         document.body.replaceChild(snipper("snipper"), el("section"));
         localStorage.clear();
         localStorage.setItem("domicilio", "is-active");
+
+        const data  = await getUserData();
+        for (const key in data) {
+          if (key === "id_cliente") localStorage.setItem(key, data[key]);
+          if (key === "correo_electronico") localStorage.setItem("email", data[key]);
+          if (key === "nombre_cliente") localStorage.setItem("full-name", data[key]);
+        }
+
         const {renderLayout} = await import("./layout/NuevoEnvio/createBox.js");
         return renderLayout();
       }

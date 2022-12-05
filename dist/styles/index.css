@@ -273,6 +273,7 @@ content-origin, content-destiny, content-shipment {
 #form-checkout {
   display: grid;
   grid-template-columns: [m-s]1fr 1fr 1fr[m-e];
+  position: relative;
   background-color: dodgerblue;
   border-radius: 1.5em;
   width: 70%;
@@ -326,9 +327,24 @@ div.form-control {
 #success-response {
   display: none;
   grid-template-columns: [m-s]1fr[m-e];
+  position: relative;
   background-color: dodgerblue;
   border-radius: 1.5em;
   width: 70%;
   height: 30em;
   padding: 1.5em 2em;
+}
+
+/* Buttons styles */
+.btn-close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: hsl(0,0%,0%);
+  border: none;
+  border-radius: 50%;
+  top: -1em;
+  right: -1em;
+  padding: .4em;
 }

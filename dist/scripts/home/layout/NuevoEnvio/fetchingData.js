@@ -63,19 +63,13 @@ const saveDetails = async () => {
   const idAddressee = await saveAddressee();
   const idShipping = await saveShipping();
   const form = new FormData();
-  form.append("idCliente", 17);
+  form.append("idCliente", getValue("id_cliente"));
   form.append("idAddressee", idAddressee);
   form.append("idShipping", idShipping);
   await fetch("index.php?controller=User&action=saveDetails", {
     method: "POST",
     body: form
   });
-
-  /*const n = el(".active-link");
-  n.classList.remove("active-link");
-
-  const mis = el(".misenvios").parentNode;
-  mis.classList.add("active-link");*/
   localStorage.clear();
 }
 
