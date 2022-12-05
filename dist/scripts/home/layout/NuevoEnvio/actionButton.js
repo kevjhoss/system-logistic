@@ -2,6 +2,7 @@ import { el, createButton, create } from '../components/globalFunctions.js';
 import { insertButtons } from './changeLayout.js';
 import { Progress } from '../NuevoEnvio/components/progress.js';
 import { snipper } from '../components/Snipper.js';
+import {saveDetails} from './fetchingData.js';
 
 const clearData = async () => {
   const section = el("section");
@@ -104,8 +105,20 @@ const next = async () => {
       el(".container__payment").style.display = "grid";
       el(".btn-close.is-payment").addEventListener("click", () => {
         el(".container__payment").style.display = "none";
-        cardForm.unmount();
       });
+      el("#form-checkout__submit").addEventListener("click", async () => {
+        saveDetails();
+        const { renderLayout } = await import("../MisEnvios/createBox.js");
+        renderLayout();
+        el("#container__result").style.display = "none";
+        el("#success-response").style.display = "none";
+        const btn = el(".active-link");
+        btn.classList.remove("active-link");
+        const parent = el(".misenvios").parentNode;
+        parent.classList.add("active-link");
+        el(".container__payment").style.display = "none";
+      })
+
     })
     return form.replaceChild(btnPay, el(".btn-next--grid"));
   }
