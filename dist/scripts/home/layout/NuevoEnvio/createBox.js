@@ -2,7 +2,6 @@ import {el,create,createButton,replace} from '../components/globalFunctions.js';
 import {next} from './actionButton.js';
 import {Progress} from '../NuevoEnvio/components/progress.js';
 customElements.define("progress-barra", Progress);
-
 export const renderLayout = async () => {
   const {FormOrigin} = await import('./FormOrigin/createShadow.js')
   if (customElements.get("content-origin") === undefined) customElements.define("content-origin", FormOrigin);

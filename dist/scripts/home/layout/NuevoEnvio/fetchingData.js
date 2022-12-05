@@ -1,5 +1,3 @@
-import {el} from "../components/globalFunctions.js";
-
 const getValue = value => localStorage.getItem(value);
 
 const getProvinces = async () => {

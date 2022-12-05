@@ -1,11 +1,11 @@
-import {create} from '../../components/globalFunctions.js';
-import {createSelect} from '../components/createElements.js';
+import { create } from '../../components/globalFunctions.js';
+import { createSelect } from '../components/createElements.js';
 
 export class FormDestiny extends HTMLElement {
   constructor(datas) {
     super();
     this.datas = datas;
-    const shadow = this.attachShadow({mode: "open"});
+    const shadow = this.attachShadow({ mode: "open" });
     const div = create("div");
     const content = new DocumentFragment();
     for (const data of datas) {
