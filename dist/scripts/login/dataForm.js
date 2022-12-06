@@ -1,4 +1,12 @@
-import {validateGmail, validatorPassword} from './validator.js';
+import {
+  validateGmail,
+  validatorPassword,
+  validateFullName,
+  validateDni,
+  validateStandart,
+  validatePhone,
+  validateCP
+} from './validator.js';
 import togglePassword from './togglePassword.js';
 
 const signUp = [
@@ -6,43 +14,50 @@ const signUp = [
     placeholder: "Ingrese su Nombre Completo",
     nameInput: "full-name",
     type: "text",
-    nameIcon: "user"
+    nameIcon: "user",
+    validator: validateFullName
   },
   {
     placeholder: "Ingrese su Numero de Documento",
     nameInput: "document-number",
     type: "text",
-    nameIcon: "dni"
+    nameIcon: "dni",
+    validator: validateDni
   },
   {
     placeholder: "Ingrese su Dirreccion",
     nameInput: "dirrection",
     type: "text",
     nameIcon: "dirrection",
+    validator: validateStandart
   },
   {
     placeholder: "Ingrese su Localidad",
     nameInput: "location",
     type: "text",
-    nameIcon: "location"
+    nameIcon: "location",
+    validator: validateStandart
   },
   {
     placeholder: "Ingrese su Provincia",
     nameInput: "province",
     type: "text",
     nameIcon: "province",
+    validator: validateStandart
   },
   {
     placeholder: "Ingrese su Codigo Postal",
     nameInput: "code-postal",
     type: "text",
-    nameIcon: "cp"
+    nameIcon: "cp",
+    validator: validateCP
   },
   {
     placeholder: "Ingrese su Telefono",
     nameInput: "phone",
     type: "tel",
-    nameIcon: "phone"
+    nameIcon: "phone",
+    validator: validatePhone
   },
   {
     placeholder: "Ingrese su Correo Electronico",

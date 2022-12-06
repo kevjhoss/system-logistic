@@ -389,3 +389,39 @@ td {
   border: .1em solid hsl(0,0%,0%);
   text-align: center;
 }
+
+/* Styles images */
+#form-checkout input {
+  display: none;
+}
+
+#form-checkout input:checked + img{
+  width: 14em;
+  height: 14em;
+  border: .5em solid hsl(0,100%,50%);
+}
+
+#form-checkout input:checked + img + span{
+  font-size: 1.3rem;
+  text-decoration: underline;
+}
+
+#form-checkout label {
+  display: grid;
+  grid-template-rows: 17em 4em;
+  justify-items: center;
+  align-items: center;
+}
+
+#form-checkout label > span {
+  font-family: 'Open-Sans';
+  font-size: 1.1rem;
+}
+
+#form-checkout img {
+  object-fit: cover;
+  display: block;
+  width: 11em;
+  height: 11em;
+  border-radius: 50%;
+}
