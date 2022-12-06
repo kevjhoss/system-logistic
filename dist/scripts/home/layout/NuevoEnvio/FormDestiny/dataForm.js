@@ -33,6 +33,7 @@ const formHomeDelivery = [
     text: getValue("provincia-destino"),
     keyUp: setValue("provincia-destino"),
     getProvinces: await getProvinces(),
+    getSucursal: getSucursal
   },
   {
     element: "textarea",
