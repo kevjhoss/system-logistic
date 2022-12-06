@@ -98,7 +98,7 @@ const validatePhone = e => {
 
   if (/^[0-9]+/i.test(input.value) !== true) span.textContent = "Solo se aceptan numeros";
 
-  if (input.value.length === 4 && /^[0-9]+/i.test(input.value)) {
+  if (input.value.length === 10 && /^[0-9]+/i.test(input.value)) {
     span.style.height = "0";
     return input.classList.remove("error");
   };
