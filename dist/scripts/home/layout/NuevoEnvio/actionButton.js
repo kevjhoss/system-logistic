@@ -1,129 +1,138 @@
-import { el, createButton, create } from '../components/globalFunctions.js';
+import { el, createButton } from '../components/globalFunctions.js';
 import { insertButtons } from './changeLayout.js';
 import { Progress } from '../NuevoEnvio/components/progress.js';
 import { snipper } from '../components/Snipper.js';
-import {saveDetails} from './fetchingData.js';
+import { saveDetails } from './fetchingData.js';
 
-const clearData = async () => {
-  const section = el("section");
+const loading = (content) => el("#box-envio").replaceChild(snipper("snipper-form"), el(content));
+
+const changeProgress = (state) => el("section").replaceChild(new Progress(state), el("progress-barra"));
+
+const elementExist = (content) => customElements.get(content) === undefined;
+
+const replaceObject = (Obj, data) => {
   const form = el("#box-envio");
-  localStorage.clear();
-  localStorage.setItem("domicilio", "is-active");
-  if (el("content-destiny") !== null) {
-    const { FormOrigin } = await import("./FormOrigin/createShadow.js");
-    form.replaceChild(new FormOrigin, el("content-destiny"));
-    section.replaceChild(new Progress("is-active-origen"), el("progress-barra"))
-
-    while (el(".btn--box")) form.removeChild(el(".btn--box"));
-    form.removeChild(el(".btn--cancel"));
-    return form.removeChild(el(".btn-prev--grid"));
-  }
-  if (el("content-shipment") !== null) {
-    const { FormOrigin } = await import("./FormOrigin/createShadow.js");
-    form.replaceChild(new FormOrigin, el("content-shipment"));
-    section.replaceChild(new Progress("is-active-origen"), el("progress-barra"))
-
-    const btnNext = createButton("button", "Siguiente");
-    btnNext.classList.add("btn--action", "btn-action--text", "btn-next--grid");
-    btnNext.addEventListener("click", next);
-    form.removeChild(el(".btn--cancel"));
-    form.removeChild(el(".btn-prev--grid"));
-    return form.replaceChild(btnNext, el(".btn-next--grid"));
-  }
+  if (data === null) return form.replaceChild(new Obj, el("form > section"));
+  form.replaceChild(new Obj(data), el("form > section"));
 }
 
-const prev = async () => {
-  const section = el("section");
-  const form = el("#box-envio");
-  if (el("content-destiny") !== null) {
-    const { FormOrigin } = await import('./FormOrigin/createShadow.js')
-    form.replaceChild(new FormOrigin, el("content-destiny"));
-    section.replaceChild(new Progress("is-active-origen"), el("progress-barra"))
-
-    while (el(".btn--box")) {
-      form.removeChild(el(".btn--box"));
-    }
-    form.removeChild(el(".btn--cancel"));
-    return form.removeChild(el(".btn-prev--grid"));
-  }
-
-  if (el("content-shipment") !== null) {
-    const { FormDestiny } = await import("./FormDestiny/createShadow.js");
-    const { formHomeDelivery } = await import("./FormDestiny/dataForm.js");
-    form.replaceChild(new FormDestiny(formHomeDelivery), el("content-shipment"));
-    section.replaceChild(new Progress("is-active-destino"), el("progress-barra"))
-
-    const btnNext = createButton("button", "Siguiente");
-    btnNext.classList.add("btn--action", "btn-action--text", "btn-next--grid");
-    btnNext.addEventListener("click", next);
-    form.replaceChild(btnNext, el(".btn-next--grid"));
-    return insertButtons(form);
-  }
+const appendButton = () => {
+  const btnCancel = createButton("button", "Cancelar");
+  btnCancel.classList.add("btn--cancel", "btn-action--text");
+  btnCancel.addEventListener("click", clearData);
+  const btnPrev = createButton("button", "Atrás");
+  btnPrev.classList.add("btn--action", "btn-action--text", "btn-prev--grid");
+  btnPrev.addEventListener("click", actionPrev);
+  el("#box-envio").insertBefore(btnPrev, el(".btn-next--grid"));
+  el("#box-envio").insertBefore(btnCancel, el(".btn-next--grid"));
 }
 
-const next = async () => {
-  const section = el("section");
+const removeButtons = () => {
   const form = el("#box-envio");
-  if (el("content-origin") !== null) {
-    form.replaceChild(snipper("snipper-form"), el("content-origin"));
-
-    const { FormDestiny } = await import("./FormDestiny/createShadow.js");
-    const { formHomeDelivery } = await import("./FormDestiny/dataForm.js");
-    if (customElements.get("content-destiny") === undefined) customElements.define("content-destiny", FormDestiny);
-    form.replaceChild(new FormDestiny(formHomeDelivery), el("form > section"));
-    section.replaceChild(new Progress("is-active-destino"), el("progress-barra"))
-
-    form.classList.remove("l-origin");
-    form.classList.add("l-destiny");
-    const btnCancel = createButton("button", "Cancelar");
-    btnCancel.classList.add("btn--cancel", "btn-action--text");
-    btnCancel.addEventListener("click", clearData);
-    const btnPrev = createButton("button", "Atrás");
-    btnPrev.classList.add("btn--action", "btn-action--text", "btn-prev--grid");
-    btnPrev.addEventListener("click", prev);
-    form.insertBefore(btnPrev, el(".btn-next--grid"));
-    form.insertBefore(btnCancel, el(".btn-next--grid"));
-    return insertButtons(form);
+  while (el(".btn--box")) {
+    form.removeChild(el(".btn--box"));
   }
+  form.removeChild(el(".btn--cancel"));
+  form.removeChild(el(".btn-prev--grid"));
+}
 
-  if (el("content-destiny") !== null) {
-
-    form.replaceChild(snipper("snipper-form"), el("content-destiny"));
-
-    const { FormShipment } = await import("./FormShipment/createShadow.js");
-    if (customElements.get("content-shipment") === undefined) customElements.define("content-shipment", FormShipment);
-    form.replaceChild(new FormShipment, el("form > section"));
-    section.replaceChild(new Progress("is-active-envio"), el("progress-barra"))
-
-    while (el(".btn--box")) {
-      form.removeChild(el(".btn--box"))
-    };
+const replaceButtons = (name) => {
+  if (name === "next") {
+    const btnNext = createButton("button", "Siguiente");
+    btnNext.classList.add("btn--action", "btn-action--text", "btn-next--grid");
+    btnNext.addEventListener("click", actionNext);
+    return el("#box-envio").replaceChild(btnNext, el(".btn-next--grid"));
+  }
+  if (name === "pay") {
     const btnPay = createButton("button", "Cotizar y Pagar");
     btnPay.textContent = "Cotizar y pagar";
     btnPay.classList.add("btn--action", "btn-action--text", "btn-next--grid");
-    btnPay.addEventListener("click", () => {
-      el(".container__payment").style.display = "grid";
-      el(".btn-close.is-payment").addEventListener("click", () => {
-        el(".container__payment").style.display = "none";
-      });
-      el("#form-checkout__submit").addEventListener("click", async () => {
-        saveDetails();
-        const { renderLayout } = await import("../MisEnvios/createBox.js");
-        renderLayout();
-        el("#container__result").style.display = "none";
-        el("#success-response").style.display = "none";
-        const btn = el(".active-link");
-        btn.classList.remove("active-link");
-        const parent = el(".misenvios").parentNode;
-        parent.classList.add("active-link");
-        el(".container__payment").style.display = "none";
-      })
-
-    })
-    return form.replaceChild(btnPay, el(".btn-next--grid"));
+    btnPay.addEventListener("click", tst);
+    return el("#box-envio").replaceChild(btnPay, el(".btn-next--grid"));
   }
 }
 
-export {
-  next
+const clearData = async () => {
+  const { FormOrigin } = await import("./FormOrigin/createShadow.js");
+  localStorage.clear();
+  localStorage.setItem("domicilio", "is-active");
+  changeProgress("is-active-origen");
+  removeButtons();
+  if (el("content-destiny") !== null) loading("content-destiny");
+  if (el("content-shipment") !== null) loading("content-shipment");
+  replaceButtons("next");
+  replaceObject(FormOrigin);
+}
+
+const actionPrev = async () => {
+  if (el("content-destiny") !== null) {
+    loading("content-destiny");
+    const { FormOrigin } = await import('./FormOrigin/createShadow.js')
+    replaceObject(FormOrigin);
+    changeProgress("is-active-origen");
+    return removeButtons();
+  }
+
+  if (el("content-shipment") !== null) {
+    loading("content-shipment");
+    const { FormDestiny } = await import("./FormDestiny/createShadow.js");
+    const { formHomeDelivery } = await import("./FormDestiny/dataForm.js");
+    replaceObject(FormDestiny, formHomeDelivery);
+    changeProgress("is-active-destino");
+    replaceButtons("next");
+    insertButtons();
+  }
+}
+
+export const actionNext = async () => {
+  if (el("content-origin") !== null) {
+    loading("content-origin");
+    const { FormDestiny } = await import("./FormDestiny/createShadow.js");
+    const { formHomeDelivery } = await import("./FormDestiny/dataForm.js");
+    if (elementExist("content-destiny")) customElements.define("content-destiny", FormDestiny);
+    replaceObject(FormDestiny, formHomeDelivery);
+    changeProgress("is-active-destino");
+    el("#box-envio").classList.remove("l-origin");
+    el("#box-envio").classList.add("l-destiny");
+    appendButton();
+    return insertButtons();
+  }
+
+  if (el("content-destiny") !== null) {
+    loading("content-destiny");
+    const { FormShipment } = await import("./FormShipment/createShadow.js");
+    if (elementExist("content-shipment")) customElements.define("content-shipment", FormShipment);
+    replaceObject(FormShipment);
+    changeProgress("is-active-envio");
+    while (el(".btn--box")) {
+      el("#box-envio").removeChild(el(".btn--box"));
+    }
+    replaceButtons("pay");
+  }
+}
+
+const tst = () => {
+  el(".container__payment").style.display = "grid";
+  el(".btn-close.is-payment").addEventListener("click", () => {
+    el(".container__payment").style.display = "none";
+  });
+  el("#form-checkout__submit").addEventListener("click", async () => {
+    saveDetails();
+    el(".container__payment").style.display = "none";
+    el("#container__result").style.display = "grid";
+    el("#box-snipper-pay").style.display = "none";
+    el("#success-response").style.display = "grid";
+    el(".btn-go-result").addEventListener("click", async () => {
+      document.body.replaceChild(snipper("snipper"), el("section"));
+      const { renderLayout } = await import("../MisEnvios/createBox.js");
+      renderLayout();
+      el("#container__result").style.display = "none";
+      el("#success-response").style.display = "none";
+      const btn = el(".active-link");
+      btn.classList.remove("active-link");
+      const parent = el(".misenvios").parentNode;
+      parent.classList.add("active-link");
+      cardForm.unmount();
+    })
+  })
 }

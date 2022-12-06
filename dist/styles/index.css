@@ -364,6 +364,7 @@ table {
   border-radius: 1em;
   border-style: hidden;
   box-shadow: 0 0 0 1px #666;
+  overflow: hidden;
 }
 
 th, td {
@@ -380,4 +381,11 @@ td {
   text-align: center;
   font-family: "Open-Sans";
   padding: .7em 0;
+}
+
+.title-table {
+  color: hsl(0,0%,100%);
+  background-color: hsl(0,0%,60%);
+  border: .1em solid hsl(0,0%,0%);
+  text-align: center;
 }

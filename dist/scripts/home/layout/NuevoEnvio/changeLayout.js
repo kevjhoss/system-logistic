@@ -34,19 +34,19 @@ const layoutHome = async e => {
   btnBranch.classList.remove("is-active")
 };
 
-const insertButtons = (form) => {
-  const sucursal = () => localStorage.getItem("branch");
-  const domicilio = () => localStorage.getItem("domicilio");
+const getValue = value => localStorage.getItem(value);
+
+const insertButtons = () => {
   const btnHomeDelivery = createButton("button", "ENTGREGA EN DOMICILIO");
-  btnHomeDelivery.classList.add("btn--box", domicilio(), "is-end");
+  btnHomeDelivery.classList.add("btn--box", getValue("domicilio"), "is-end");
   btnHomeDelivery.addEventListener("click", layoutHome);
   const btnBranchDelivery = createButton("button", "ENTREGA EN SUCURSAL");
-  btnBranchDelivery.classList.add("btn--box", sucursal(), "is-start");
+  btnBranchDelivery.classList.add("btn--box", getValue("branch"), "is-start");
   btnBranchDelivery.addEventListener("click", layoutBranch)
-  if (sucursal() !== null) layoutBranch(btnBranchDelivery);
-  if (domicilio() !== null) layoutHome(btnHomeDelivery);
-  form.insertBefore(btnHomeDelivery, el("content-destiny"));
-  form.insertBefore(btnBranchDelivery, el("content-destiny"));
+  if (getValue("branch") !== null) layoutBranch(btnBranchDelivery);
+  if (getValue("domicilio") !== null) layoutHome(btnHomeDelivery);
+  el("#box-envio").insertBefore(btnHomeDelivery, el("content-destiny"));
+  el("#box-envio").insertBefore(btnBranchDelivery, el("content-destiny"));
 }
 
 export {

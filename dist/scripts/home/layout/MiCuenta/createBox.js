@@ -1,5 +1,13 @@
 import {create,replace,el} from '../components/globalFunctions.js';
-import {getUserData} from './fetchingData.js';
+import {getUserData} from '../fetchingData.js';
+
+const append = (datas, content) => {
+  return (key) => {
+    const p = create("p");
+    p.textContent = datas[key];
+    content.appendChild(p);
+  }
+}
 
 export const renderLayout = async () => {
   const section = create("section");
@@ -7,17 +15,17 @@ export const renderLayout = async () => {
   h2.textContent = "MI CUENTA";
   const content = new DocumentFragment();
   const datas = await getUserData();
-  for (const key in datas) {
-    const p = create("p");
-    if (key === "id_cliente") continue;
-    p.textContent = datas[key];
-    content.appendChild(p);
-  }
-  const btn = create("button");
-  btn.textContent = "Cerrar Sesion";
-  btn.addEventListener("click", () => location.href = "index.php?controller=User&exit=true");
+  const setValue = append(datas, content);
+  setValue("nombre_cliente");
+  setValue("numero_documento");
+  setValue("direccion");
+  setValue("localidad");
+  setValue("provincia");
+  setValue("codigo_postal");
+  setValue("telefono");
+  setValue("correo_electronico");
+  setValue("password");
   section.appendChild(h2);
   section.appendChild(content);
-  section.appendChild(btn);
   replace(section, el("section"));
 }

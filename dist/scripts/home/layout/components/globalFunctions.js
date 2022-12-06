@@ -7,6 +7,7 @@ const replace = (newElement, replaceElement) => document.body.replaceChild(newEl
 const getValue = key => () => localStorage.getItem(key) || "";
 
 const setValue = key => e => localStorage.setItem(key, e.target.value);
+const setItem = (key, value) => localStorage.setItem(key, value);
 
 const createButton = (type, text) => {
   const button = create("button");
@@ -21,5 +22,6 @@ export {
   replace,
   createButton,
   getValue,
-  setValue
+  setValue,
+  setItem
 }

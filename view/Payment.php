@@ -5,12 +5,9 @@
         <button type="button" class="btn-close is-payment">
             <?php echo Icons('close', '2.2em', 'hsl(0,100%,50%)')?>
         </button>
-        <label for="medio de pago">Mercado Pago</label>
-        <input type="checkbox" name="pago">
-        <label for="medio de pago">Pago Efectivo</label>
-        <input type="checkbox" name="pago">
-        <label for="medio de pago">Tranferencia</label>
-        <input type="checkbox" name="pago">
+        <input type="radio" name="pago" id="pago" value="pago">
+        <input type="radio" name="pago" id="pago" value="pago">
+        <input type="radio" name="pago" id="pago" value="pago">
         <button id="form-checkout__submit" type="button" class="btn btn-primary btn-block">Pay</button>
     </form>
 </div>
@@ -25,9 +22,7 @@
         <button type="button" class="btn-close is-result">
             <?php echo Icons('close', '2.2em', 'hsl(0,100%,50%)')?>
         </button>
-        <p><b>ID: </b><span id="payment-id"></span></p>
-        <p><b>Status: </b><span id="payment-status"></span></p>
-        <p><b>Detail: </b><span id="payment-detail"></span></p>
+        <p>Transferencia exitosa</p>
         <button type="button" class="btn-go-result">IR A MIS ENVIOS</button>
     </div>
 </div>
