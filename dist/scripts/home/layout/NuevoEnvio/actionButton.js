@@ -1,8 +1,9 @@
-import { el, createButton } from '../components/globalFunctions.js';
+import { el, createButton, setItem, replace } from '../components/globalFunctions.js';
 import { insertButtons } from './changeLayout.js';
 import { Progress } from '../NuevoEnvio/components/progress.js';
 import { snipper } from '../components/Snipper.js';
 import { saveDetails } from './fetchingData.js';
+import {getUserData} from '../fetchingData.js';
 
 const loading = (content) => el("#box-envio").replaceChild(snipper("snipper-form"), el(content));
 
@@ -54,12 +55,16 @@ const replaceButtons = (name) => {
 
 const clearData = async () => {
   const { FormOrigin } = await import("./FormOrigin/createShadow.js");
-  localStorage.clear();
-  localStorage.setItem("domicilio", "is-active");
-  changeProgress("is-active-origen");
   removeButtons();
   if (el("content-destiny") !== null) loading("content-destiny");
   if (el("content-shipment") !== null) loading("content-shipment");
+  localStorage.clear();
+  const data = await getUserData();
+  setItem("id_cliente", data.id_cliente);
+  setItem("email", data.correo_electronico);
+  setItem("full-name", data.nombre_cliente);
+  setItem("domicilio", "is-active");
+  changeProgress("is-active-origen");
   replaceButtons("next");
   replaceObject(FormOrigin);
 }
@@ -123,7 +128,7 @@ const tst = () => {
     el("#box-snipper-pay").style.display = "none";
     el("#success-response").style.display = "grid";
     el(".btn-go-result").addEventListener("click", async () => {
-      document.body.replaceChild(snipper("snipper"), el("section"));
+      replace(snipper("snipper"), el("section"));
       const { renderLayout } = await import("../MisEnvios/createBox.js");
       renderLayout();
       el("#container__result").style.display = "none";
@@ -132,7 +137,6 @@ const tst = () => {
       btn.classList.remove("active-link");
       const parent = el(".misenvios").parentNode;
       parent.classList.add("active-link");
-      cardForm.unmount();
     })
   })
 }

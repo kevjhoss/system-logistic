@@ -10,7 +10,13 @@ const refresh = async (li) => {
     if (el.nodeName === "LI") el.classList.remove("active-link");
   });
   li.classList.add("active-link");
-  localStorage.clear();
+  for (const key in localStorage) {
+    if (key === "id_cliente") continue;
+    if (key === "email") continue;
+    if (key === "full-name") continue;
+    if (key === "full-name") continue;
+    localStorage.removeItem(key);
+  }
   const data = await getUserData();
   setItem("id_cliente", data.id_cliente);
   setItem("email", data.correo_electronico);
