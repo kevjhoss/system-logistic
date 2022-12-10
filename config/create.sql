@@ -28,7 +28,7 @@ CREATE TABLE envios (
   sucursal_origen varchar(50) NOT NULL,
   tipo_envio varchar(50) NOT NULL,
   metodo_pago varchar(50) NOT NULL,
-  estado varchar(50) NOT NULL,
+  estado ENUM("COMPLETADO", "CANCELADO", "ENTREGADO") NOT NULL DEFAULT "COMPLETADO",
   fecha TIMESTAMP NOT NULL DEFAULT CURRENT_DATE
 );
 
@@ -42,7 +42,7 @@ CREATE TABLE destinatarios (
   codigo_postal int(4) DEFAULT NULL,
   telefono int(10) NOT NULL,
   correo_electronico varchar(50) NOT NULL,
-  observaciones text NOT NULL,
+  observaciones text DEFAULT NULL,
   sucursal varchar(50) DEFAULT NULL
 );
 

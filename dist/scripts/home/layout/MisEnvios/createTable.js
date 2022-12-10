@@ -25,6 +25,7 @@ const createTitle = (el, title) => {
 export const createTable = async () => {
   const datas = await getShipment();
   const content = new DocumentFragment();
+  if (datas === null) return content;
   for (const data of datas) {
     const table = create("table");
     const titleOrigen = create("tr");
@@ -71,7 +72,7 @@ export const createTable = async () => {
     firstRowShipping("ancho");
     const secondRowShipping = append(data, headTwoShipping, bodyTwoShipping);
     secondRowShipping("alto");
-    secondRowShipping("costo");
+    secondRowShipping("costo_referencia");
     secondRowShipping("estado");
     secondRowShipping("metodo_pago");
 

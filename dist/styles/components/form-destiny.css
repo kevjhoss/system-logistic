@@ -1,11 +1,11 @@
-div {
+#box-destino {
   display: grid;
   grid-template-columns: [m-s]12em[c-s]5em[i-s]5em[c-e]1fr[m-e];
   row-gap: .8em;
   column-gap: 1.2em;
 }
 
-label {
+#box-destino > label {
   grid-column: m-s/c-s;
   display: flex;
   justify-content: end;
@@ -14,17 +14,7 @@ label {
   font-family: 'Open-Sans';
 }
 
-input {
-  grid-column: c-s/m-e;
-  outline: none;
-  border: .1em solid hsl(0,0%,0%);
-  border-radius: .35em;
-  font-family: 'Open-Sans';
-  font-size: .9rem;
-  padding: .3em 1em;
-}
-
-textarea {
+#box-destino > textarea {
   grid-column: c-s/m-e;
   outline: none;
   resize: vertical;
@@ -36,23 +26,82 @@ textarea {
   padding: .5em 1em;
 }
 
-select {
+ #box-destino > select {
   grid-column: c-s/m-e;
+  background-color: hsl(0,0%,100%);
   border: .1em solid hsl(0,0%,0%);
   border-radius: .35em;
   font-family: 'Open-Sans';
   padding: .5em 1em;
 }
 
-label[for=codigo-area] {
+#box-destino label[for=codigo-area] {
   grid-column: m-s/c-s;
 }
-input[name=codigo-area] {
+
+#box-destino label[for=codigo-area] + div {
+  height: 1.644em;
   grid-column: c-s/i-s;
+  overflow: visible;
 }
-label[for=telefono] {
+
+#box-destino label[for=codigo-area] + div > span{
+  width: 220%;
+}
+
+#box-destino label[for=codigo-area] + div > input{
+  width: 100%;
+}
+
+#box-destino label[for=telefono] {
   grid-column: i-s/c-e;
 }
-input[name=telefono] {
+
+#box-destino label[for=telefono] + div {
   grid-column: c-e/m-e;
+  height: 1.644em;
+}
+
+.box-item {
+  grid-column: c-s/m-e;
+  display: grid;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: .4em;
+  transition: padding-bottom .3s ease-out;
+}
+
+.box-item > input {
+  position: relative;
+  outline: none;
+  border: .1em solid hsl(0,0%,0%);
+  border-radius: .35em;
+  font-family: 'Open-Sans';
+  font-size: .9rem;
+  height: 100%;
+  padding: .1em .9em;
+  z-index: 1;
+}
+
+.box-item span {
+  position: absolute;
+  left: 0;
+}
+
+.message-error {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  overflow: hidden;
+  color: hsl(0,0%,100%);
+  background-color: hsl(0,100%,50%);
+  border-bottom-left-radius: .5em;
+  border-bottom-right-radius: 1em;
+  font-family: "Open-Sans";
+  left: 0;
+  top: 1.5em;
+  width: 100%;
+  height: 0;
+  padding-left: .3em;
+  transition: height .3s ease-out;
 }

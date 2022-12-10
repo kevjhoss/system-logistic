@@ -5,7 +5,6 @@
   <?php include './view/meta.php'; ?>
   <link rel="stylesheet" type="text/css" href="/dist/styles/index.css" />
   <script type='module' src='/dist/scripts/home/index.js' defer></script>
-  <script src="https://sdk.mercadopago.com/js/v2"></script>
   <title>Logistica</title>
 </head>
 

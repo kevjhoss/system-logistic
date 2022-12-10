@@ -56,13 +56,12 @@ class UserAddressee extends EntityBase {
 
   public function save() {
     if ($this->numero_documento == "null") {
-      $query = "INSERT INTO destinatarios (nombre_destinatario, provincia, telefono, correo_electronico, observaciones, sucursal)
+      $query = "INSERT INTO destinatarios (nombre_destinatario, provincia, telefono, correo_electronico, sucursal)
               VALUES (
                 \"$this->destinatario\",
                 \"$this->provincia\",
                 \"$this->telefono\",
                 \"$this->email\",
-                \"$this->observaciones\",
                 \"$this->sucursal\"
               )";
       $this->db()->query($query);

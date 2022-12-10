@@ -1,4 +1,4 @@
-import { el, createButton, setItem, replace } from '../components/globalFunctions.js';
+import { el, createButton, setItem, replace, message } from '../components/globalFunctions.js';
 import { insertButtons } from './changeLayout.js';
 import { Progress } from '../NuevoEnvio/components/progress.js';
 import { snipper } from '../components/Snipper.js';
@@ -37,9 +37,7 @@ const removeButtons = () => {
   form.removeChild(el(".btn-prev--grid"));
 }
 
-const replaceButtons = (name) => {
-  if (name === "next") {
-    const btnNext = createButton("button", "Siguiente");
+const replaceButtons = (name) => { if (name === "next") { const btnNext = createButton("button", "Siguiente");
     btnNext.classList.add("btn--action", "btn-action--text", "btn-next--grid");
     btnNext.addEventListener("click", actionNext);
     return el("#box-envio").replaceChild(btnNext, el(".btn-next--grid"));
@@ -89,8 +87,24 @@ const actionPrev = async () => {
   }
 }
 
+const validateCampo = () => {
+  const status = [];
+  let root;
+  el("#box-envio").childNodes.forEach(el => {
+    if (el.nodeName.includes("CONTENT")) root = el;
+  });
+  const div = root.shadowRoot.childNodes[1];
+  div.childNodes.forEach(el => {
+    if (el.nodeName === "DIV") status.push(el.childNodes[0].textContent);
+    if (el.nodeName === "SELECT") status.push(el.value);
+    if (el.nodeName === "TEXTAREA") status.push(el.value);
+  });
+  return status.every(str => str !== "");
+}
+
 export const actionNext = async () => {
   if (el("content-origin") !== null) {
+    if (validateCampo() === false) return message("error-empety", "Debe completar todos los campos para continuar...")
     loading("content-origin");
     const { FormDestiny } = await import("./FormDestiny/createShadow.js");
     const { formHomeDelivery } = await import("./FormDestiny/dataForm.js");
@@ -104,6 +118,7 @@ export const actionNext = async () => {
   }
 
   if (el("content-destiny") !== null) {
+    if (validateCampo() === false) return message("error-empety", "Debe completar todos los campos para continuar...")
     loading("content-destiny");
     const { FormShipment } = await import("./FormShipment/createShadow.js");
     if (elementExist("content-shipment")) customElements.define("content-shipment", FormShipment);
@@ -117,6 +132,7 @@ export const actionNext = async () => {
 }
 
 const tst = () => {
+  if (validateCampo() === false) return message("error-empety", "Debe completar todos los campos para continuar...")
   el(".container__payment").style.display = "grid";
   el(".btn-close.is-payment").addEventListener("click", () => {
     el(".container__payment").style.display = "none";

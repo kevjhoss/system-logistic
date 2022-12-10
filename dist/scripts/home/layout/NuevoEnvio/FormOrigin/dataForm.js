@@ -1,18 +1,21 @@
 import {getValue,setValue} from '../../components/globalFunctions.js';
 import {getProvinces, getSucursal} from '../fetchingData.js';
+import {validateStandart, validateGmail} from '../../components/validator.js';
 
 export const formOrigin = [
   {
     label: "Nombre y Apellido",
     name: "full-name",
     text: getValue("full-name"),
-    keyUp: setValue("full-name")
+    keyUp: setValue("full-name"),
+    validator: validateStandart
   },
   {
     label: "Correo electrónico",
     name: "email",
     text: getValue("email"),
-    keyUp: setValue("email")
+    keyUp: setValue("email"),
+    validator: validateGmail
   },
   {
     element: "select",
@@ -20,8 +23,10 @@ export const formOrigin = [
     name: "province",
     text: getValue("provincia-origen"),
     keyUp: setValue("provincia-origen"),
-    getProvinces: await getProvinces(),
-    getSucursal: getSucursal
+    keyProvince: "provincia-origen",
+    keySucursal: "sucursal-origen",
+    getSucursal: getSucursal,
+    getProvinces: await getProvinces()
   },
   {
     element: "select",
@@ -29,5 +34,6 @@ export const formOrigin = [
     name: "branch-office",
     text: getValue("sucursal-origen"),
     keyUp: setValue("sucursal-origen"),
+    key: "sucursal-origen"
   },
 ];

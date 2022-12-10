@@ -26,7 +26,7 @@ const saveShipping = async () => {
   form.append("sucursal-origen", getValue("sucursal-origen"));
   form.append("tipo-envio", getValue("domicilio") === null ? "sucursal" : "domicilio");
   form.append("metodo-pago", "mercado pago");
-  form.append("estado", "Completo");
+  form.append("estado", "COMPLETADO");
 
   const datas = await fetch("index.php?controller=User&action=saveEnvio", {
     method: "POST",

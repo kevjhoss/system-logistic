@@ -16,7 +16,7 @@ const validateGmail = e => {
 const validatorPassword = e => {
   const input = e.target;
   const span = input.nextElementSibling;
-  span.textContent = "La contrasena debe tener como minimo 5 carateceres";
+  span.textContent = "La contrasena debe tener como minimo 5 caracteres";
   if (input.value.length === 0) span.textContent = "Campo requerido";
 
   if (input.value.length > 5) {
@@ -48,9 +48,9 @@ const validateDni = e => {
   span.textContent = "El numero de documento debe ser igual a 8";
   if (input.value.length === 0) return span.textContent = "Campo requerido";
 
-  if (/^[0-9]+/i.test(input.value) !== true) span.textContent = "Solo se aceptan numeros";
+  if (/^[0-9]+$/i.test(input.value) !== true) span.textContent = "Solo se aceptan numeros";
 
-  if (input.value.length === 8 && /^[0-9]+/i.test(input.value)) {
+  if (input.value.length === 8 && /^[0-9]+$/i.test(input.value)) {
     span.style.height = "0";
     return input.classList.remove("error");
   };
@@ -79,9 +79,9 @@ const validateCP = e => {
   span.textContent = "El numero de documento debe ser igual a 4";
   if (input.value.length === 0) return span.textContent = "Campo requerido";
 
-  if (/^[0-9]+/i.test(input.value) !== true) span.textContent = "Solo se aceptan numeros";
+  if (/^[0-9]+$/i.test(input.value) !== true) span.textContent = "Solo se aceptan numeros";
 
-  if (input.value.length === 4 && /^[0-9]+/i.test(input.value)) {
+  if (/^[0-9]+$/i.test(input.value) && input.value.length === 4) {
     span.style.height = "0";
     return input.classList.remove("error");
   };
@@ -96,9 +96,9 @@ const validatePhone = e => {
   span.textContent = "El numero de documento debe ser igual a 10";
   if (input.value.length === 0) return span.textContent = "Campo requerido";
 
-  if (/^[0-9]+/i.test(input.value) !== true) span.textContent = "Solo se aceptan numeros";
+  if (/^[0-9]+$/i.test(input.value) !== true) span.textContent = "Solo se aceptan numeros";
 
-  if (input.value.length === 10 && /^[0-9]+/i.test(input.value)) {
+  if (input.value.length === 10 && /^[0-9]+$/i.test(input.value)) {
     span.style.height = "0";
     return input.classList.remove("error");
   };
