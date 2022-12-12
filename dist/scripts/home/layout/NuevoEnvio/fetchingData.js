@@ -44,7 +44,7 @@ const saveAddressee = async () => {
   form.append("localidad", getValue("localidad"));
   form.append("provincia", getValue("provincia-destino"));
   form.append("codigo-postal", getValue("codigo-postal"));
-  form.append("telefono", getValue("telefono"));
+  form.append("telefono", `${getValue("codigo-area")}${getValue("telefono")}`);
   form.append("correo-electronico", getValue("correo-electronico"));
   form.append("observaciones", getValue("observaciones"));
   form.append("sucursal", getValue("sucursal-destino"));

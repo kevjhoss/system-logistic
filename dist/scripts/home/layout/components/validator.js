@@ -64,12 +64,12 @@ const validatePhone = e => {
   const div = e.target.parentNode;
   const input = e.target;
   const span = input.nextElementSibling;
-  span.textContent = "El numero de documento debe ser igual a 10";
+  span.textContent = "El numero de celular debe ser igual o mayor a 6";
   if (input.value.length === 0) return span.textContent = "Campo requerido";
 
   if (/^[0-9]+$/i.test(input.value) !== true) span.textContent = "Solo se aceptan numeros";
 
-  if (input.value.length === 10 && /^[0-9]+$/i.test(input.value)) {
+  if (input.value.length >= 6 && /^[0-9]+$/i.test(input.value)) {
     input.textContent = "0";
     div.style.paddingBottom = ".4em";
     span.style.height = "0";

@@ -37,7 +37,41 @@ const removeButtons = () => {
   form.removeChild(el(".btn-prev--grid"));
 }
 
-const replaceButtons = (name) => { if (name === "next") { const btnNext = createButton("button", "Siguiente");
+const showBoxPayment = () => {
+  if (validateValues() === false) return message("error-empety", "Debe completar todos los campos para continuar...")
+  el(".container__payment").style.display = "grid";
+}
+
+const changePage = async () => {
+  const ctxResult = el("#container__result");
+  const ctxResponse = el("#success-response");
+  const { renderLayout } = await import("../MisEnvios/createBox.js");
+  ctxResult.style.display = "none";
+  ctxResponse.style.display = "none";
+  replace(snipper("snipper"), el("section"));
+  const btn = el(".active-link");
+  btn.classList.remove("active-link");
+  const parent = el(".misenvios").parentNode;
+  parent.classList.add("active-link");
+  renderLayout();
+}
+
+const sendData = () => {
+  const ctxPayment = el(".container__payment");
+  const ctxResult = el("#container__result");
+  const ctxResponse = el("#success-response");
+  saveDetails();
+  ctxPayment.style.display = "none";
+  ctxResult.style.display = "grid";
+  el("#box-snipper-pay").style.display = "none";
+  ctxResponse.style.display = "grid";
+}
+
+const closeBox = () => el(".container__payment").style.display = "none";
+
+const replaceButtons = (name) => {
+  if (name === "next") {
+    const btnNext = createButton("button", "Siguiente");
     btnNext.classList.add("btn--action", "btn-action--text", "btn-next--grid");
     btnNext.addEventListener("click", actionNext);
     return el("#box-envio").replaceChild(btnNext, el(".btn-next--grid"));
@@ -46,7 +80,7 @@ const replaceButtons = (name) => { if (name === "next") { const btnNext = create
     const btnPay = createButton("button", "Cotizar y Pagar");
     btnPay.textContent = "Cotizar y pagar";
     btnPay.classList.add("btn--action", "btn-action--text", "btn-next--grid");
-    btnPay.addEventListener("click", tst);
+    btnPay.addEventListener("click", showBoxPayment);
     return el("#box-envio").replaceChild(btnPay, el(".btn-next--grid"));
   }
 }
@@ -66,6 +100,29 @@ const clearData = async () => {
   replaceButtons("next");
   replaceObject(FormOrigin);
 }
+
+const validateValues = () => {
+  const status = [];
+  let div;
+  el("#box-envio").childNodes.forEach(el => {
+    if (el.nodeName.includes("CONTENT")) div = el.shadowRoot.childNodes[1];
+  });
+  div.childNodes.forEach(el => {
+    if (el.nodeName === "DIV") status.push(el.childNodes[0].textContent);
+    if (el.nodeName === "SELECT") status.push(el.value);
+    if (el.nodeName === "TEXTAREA") status.push(el.value);
+  });
+  return status.every(str => str !== "");
+}
+
+const btnSubmit = el("#form-checkout__submit");
+btnSubmit.addEventListener("click", sendData);
+
+const btnClose = el(".btn-close.is-payment");
+btnClose.addEventListener("click", closeBox);
+
+const btnChange = el(".btn-go-result");
+btnChange.addEventListener("click", changePage);
 
 const actionPrev = async () => {
   if (el("content-destiny") !== null) {
@@ -87,24 +144,9 @@ const actionPrev = async () => {
   }
 }
 
-const validateCampo = () => {
-  const status = [];
-  let root;
-  el("#box-envio").childNodes.forEach(el => {
-    if (el.nodeName.includes("CONTENT")) root = el;
-  });
-  const div = root.shadowRoot.childNodes[1];
-  div.childNodes.forEach(el => {
-    if (el.nodeName === "DIV") status.push(el.childNodes[0].textContent);
-    if (el.nodeName === "SELECT") status.push(el.value);
-    if (el.nodeName === "TEXTAREA") status.push(el.value);
-  });
-  return status.every(str => str !== "");
-}
-
 export const actionNext = async () => {
   if (el("content-origin") !== null) {
-    if (validateCampo() === false) return message("error-empety", "Debe completar todos los campos para continuar...")
+    if (validateValues() === false) return message("error-empety", "Debe completar todos los campos para continuar...")
     loading("content-origin");
     const { FormDestiny } = await import("./FormDestiny/createShadow.js");
     const { formHomeDelivery } = await import("./FormDestiny/dataForm.js");
@@ -118,7 +160,7 @@ export const actionNext = async () => {
   }
 
   if (el("content-destiny") !== null) {
-    if (validateCampo() === false) return message("error-empety", "Debe completar todos los campos para continuar...")
+    if (validateValues() === false) return message("error-empety", "Debe completar todos los campos para continuar...")
     loading("content-destiny");
     const { FormShipment } = await import("./FormShipment/createShadow.js");
     if (elementExist("content-shipment")) customElements.define("content-shipment", FormShipment);
@@ -129,30 +171,4 @@ export const actionNext = async () => {
     }
     replaceButtons("pay");
   }
-}
-
-const tst = () => {
-  if (validateCampo() === false) return message("error-empety", "Debe completar todos los campos para continuar...")
-  el(".container__payment").style.display = "grid";
-  el(".btn-close.is-payment").addEventListener("click", () => {
-    el(".container__payment").style.display = "none";
-  });
-  el("#form-checkout__submit").addEventListener("click", async () => {
-    saveDetails();
-    el(".container__payment").style.display = "none";
-    el("#container__result").style.display = "grid";
-    el("#box-snipper-pay").style.display = "none";
-    el("#success-response").style.display = "grid";
-    el(".btn-go-result").addEventListener("click", async () => {
-      replace(snipper("snipper"), el("section"));
-      const { renderLayout } = await import("../MisEnvios/createBox.js");
-      renderLayout();
-      el("#container__result").style.display = "none";
-      el("#success-response").style.display = "none";
-      const btn = el(".active-link");
-      btn.classList.remove("active-link");
-      const parent = el(".misenvios").parentNode;
-      parent.classList.add("active-link");
-    })
-  })
 }
