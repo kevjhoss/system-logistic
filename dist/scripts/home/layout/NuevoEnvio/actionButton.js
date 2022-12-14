@@ -1,4 +1,4 @@
-import { el, createButton, setItem, replace, message } from '../components/globalFunctions.js';
+import { el, createButton, setItem, replace, message, elementExist } from '../components/globalFunctions.js';
 import { insertButtons } from './changeLayout.js';
 import { Progress } from '../NuevoEnvio/components/progress.js';
 import { snipper } from '../components/Snipper.js';
@@ -8,8 +8,6 @@ import {getUserData} from '../fetchingData.js';
 const loading = (content) => el("#box-envio").replaceChild(snipper("snipper-form"), el(content));
 
 const changeProgress = (state) => el("section").replaceChild(new Progress(state), el("progress-barra"));
-
-const elementExist = (content) => customElements.get(content) === undefined;
 
 const replaceObject = (Obj, data) => {
   const form = el("#box-envio");
@@ -38,7 +36,7 @@ const removeButtons = () => {
 }
 
 const showBoxPayment = () => {
-  if (validateValues() === false) return message("error-empety", "Debe completar todos los campos para continuar...")
+  if (validateValues() === false) return message("error-empety", "alert-error", "Debe completar todos los campos para continuar...")
   el(".container__payment").style.display = "grid";
 }
 
@@ -146,7 +144,7 @@ const actionPrev = async () => {
 
 export const actionNext = async () => {
   if (el("content-origin") !== null) {
-    if (validateValues() === false) return message("error-empety", "Debe completar todos los campos para continuar...")
+    if (validateValues() === false) return message("error-empety", "alert-error", "Debe completar todos los campos para continuar...")
     loading("content-origin");
     const { FormDestiny } = await import("./FormDestiny/createShadow.js");
     const { formHomeDelivery } = await import("./FormDestiny/dataForm.js");
@@ -160,7 +158,7 @@ export const actionNext = async () => {
   }
 
   if (el("content-destiny") !== null) {
-    if (validateValues() === false) return message("error-empety", "Debe completar todos los campos para continuar...")
+    if (validateValues() === false) return message("error-empety", "alert-error", "Debe completar todos los campos para continuar...")
     loading("content-destiny");
     const { FormShipment } = await import("./FormShipment/createShadow.js");
     if (elementExist("content-shipment")) customElements.define("content-shipment", FormShipment);

@@ -12,6 +12,8 @@ const setValue = key => e => localStorage.setItem(key, e.target.value);
 
 const setItem = (key, value) => localStorage.setItem(key, value);
 
+const elementExist = content => customElements.get(content) === undefined;
+
 const createButton = (type, text) => {
   const button = create("button");
   button.type = type;
@@ -39,8 +41,8 @@ const createAlert = (status, text) => {
   return div;
 };
 
-const message = (status,text) => {
-  const div = document.querySelector("div.alert-error");
+const message = (status,type,text) => {
+  const div = document.querySelector(`div.${type}`);
   if (div !== null) return document.body.replaceChild(createAlert(status,text), div);
   document.body.appendChild(createAlert(status,text));
 }
@@ -53,5 +55,7 @@ export {
   getValue,
   setValue,
   setItem,
-  message
+  message,
+  elementExist,
+  createSvg
 }

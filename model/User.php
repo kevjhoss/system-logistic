@@ -92,15 +92,28 @@ class User extends EntityBase {
     return ['status' => $save];
   }
 
+  private function opt($key, $value) {
+    if (!isset($_POST[$key])) {
+      return "";
+    }
+    return "$key='$value',";
+  }
+
   public function update() {
-    $query = "UPDATE users SET
-              name=\"$this->name\",
-              lastname=\"$this->lastname\",
-              email=\"$this->email\",
-              password=\"$this->password\"
-              WHERE (id=\"$this->id\")";
+    $pass_hashed = $this->pass->encriptar($_POST['password']);
+    $data = "UPDATE clientes SET
+              " . $this->opt('nombre_cliente', $_POST['nombre_cliente']) ."
+              " . $this->opt('numero_documento', $_POST['numero_documento']) . "
+              " . $this->opt('direccion', $_POST['direccion']) . "
+              " . $this->opt('localidad', $_POST['localidad']) . "
+              " . $this->opt('provincia', $_POST['provincia']) . "
+              " . $this->opt('codigo_postal', $_POST['codigo_postal']) . "
+              " . $this->opt('telefono', $_POST['telefono']) . "
+              " . $this->opt('correo_electronico', $_POST['correo_electronico']) . "
+              " . $this->opt('password', $pass_hashed);
+    $formated = preg_replace("/[,]$/", "", trim($data));
+    $query = $formated . "\n WHERE (id_cliente='" . $_POST['id_cliente'] . "');";
     $save = $this->db()->query($query);
-    $response = array($save);
-    return array($response);
+    return ["status" => $save];
   }
 }

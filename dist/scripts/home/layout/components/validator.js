@@ -121,11 +121,31 @@ const validateStandart = e => {
   span.style.height = "1.8em";
   input.classList.add("error");
 }
+
+const validatePassword = e => {
+  const div = e.target.parentNode;
+  const input = e.target;
+  const span = input.nextElementSibling;
+  span.textContent = "La contrasena debe tener como minimo 5 caracteres";
+  if (input.value.length === 0) span.textContent = "Campo requerido";
+
+  if (input.value.length > 5) {
+    div.style.paddingBottom = ".4em";
+    span.style.height = "0";
+    return input.classList.remove("error");
+  };
+  input.textContent = "";
+  div.style.paddingBottom = "1.8em";
+  span.style.height = "1.8em";
+  input.classList.add("error");
+};
+
 export {
   validateDni,
   validateCP,
   validateGmail,
   validatePhone,
   validateNumbers,
-  validateStandart
+  validateStandart,
+  validatePassword
 }

@@ -76,4 +76,10 @@ final class UserController extends ControllerBase {
     $save = $user->save();
     die(json_encode($save));
   }
+
+  public function updateUser() {
+    $user = new User("clientes", $this->adapter);
+    $update = $user->update();
+    die(json_encode($update));
+  }
 }

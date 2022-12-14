@@ -1,13 +1,11 @@
-import {el,create,createButton,replace} from '../components/globalFunctions.js';
+import {el,create,createButton,replace,elementExist} from '../components/globalFunctions.js';
 import {actionNext} from './actionButton.js';
 import {Progress} from '../NuevoEnvio/components/progress.js';
 customElements.define("progress-barra", Progress);
 
-const validate = (content) => customElements.get(content) === undefined;
-
 export const renderLayout = async () => {
   const {FormOrigin} = await import('./FormOrigin/createShadow.js')
-  if (validate("content-origin")) customElements.define("content-origin", FormOrigin);
+  if (elementExist("content-origin")) customElements.define("content-origin", FormOrigin);
   const section = create("section");
   const form = create("form");
   form.id = "box-envio";
