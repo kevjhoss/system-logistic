@@ -1,5 +1,8 @@
-import { create } from '../components/globalFunctions.js';
+import { create, createSvg, message, replace, el } from '../components/globalFunctions.js';
+import {snipper} from '../components/Snipper.js';
+import {Icons} from '../components/getIcons.js';
 import { getShipment } from "../fetchingData.js";
+import {renderLayout} from './createBox.js';
 
 const append = (data, head, body) => {
   return (key, num = 1) => {
@@ -91,6 +94,31 @@ export const createTable = async () => {
     table.appendChild(bodyOneShipping);
     table.appendChild(headTwoShipping);
     table.appendChild(bodyTwoShipping);
+
+    const btnDelete = create("button");
+    btnDelete.classList.add("btn-delete");
+    btnDelete.addEventListener("click", async () => {
+      const form = new FormData();
+      form.append("id-detalle", data.id_detalle_envio)
+      form.append("id-destinatario", data.id_destinatario);
+      form.append("id-envio", data.id_envio);
+
+      const send = await fetch("index.php?controller=User&action=deleteDetails", {
+        method: "POST",
+        body: form
+      });
+
+      const value = await send.json();
+      if (value.status ==  true) {
+        message("success", "alert-success", "EL ENVIO SE BORRO CORRECTAMENTE");
+        replace(snipper("snipper"), el("section"));
+        return renderLayout();
+      }
+    })
+    const svg = createSvg(320,512,2,2);
+    svg.innerHTML = Icons("delete")
+    btnDelete.appendChild(svg);
+    table.appendChild(btnDelete);
     content.appendChild(table);
   }
   return content;

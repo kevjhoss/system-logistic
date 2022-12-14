@@ -406,6 +406,7 @@ table,th,td {
 }
 
 table {
+  position: relative;
   background-color: rgb(182, 227, 239);
   box-shadow: 0 0 1em .2em hsl(0, 0%, 11%);
   border-collapse: collapse;
@@ -441,6 +442,21 @@ td {
   background-color: hsl(0,0%,60%);
   border: .1em solid hsl(0,0%,0%);
   text-align: center;
+}
+
+table > .btn-delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: red;
+  border: none;
+  border-radius: 50%;
+  top: -1.5em;
+  right: -1.5em;
+  width: 3.5em;
+  height: 3.5em;
+  overflow: hidden;
 }
 
 /* Styles images */

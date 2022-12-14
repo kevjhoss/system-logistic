@@ -21,7 +21,7 @@ class UserDetails extends EntityBase {
   }
 
   public function getDetailsEnvios($id_cliente) {
-    $query = "SELECT E.*,DS.* FROM detalle_envios AS detail
+    $query = "SELECT detail.id_detalle_envio,E.*,DS.* FROM detalle_envios AS detail
               INNER JOIN envios AS E
               ON detail.id_envio = E.id_envio
               INNER JOIN destinatarios AS DS
@@ -45,6 +45,16 @@ class UserDetails extends EntityBase {
                 \"$this->id_shipping\"
               )";
     $save = $this->db()->query($query);
+    return ["status" => $save];
+  }
+
+  public function delete() {
+    $query = "DELETE FROM detalle_envios WHERE id_detalle_envio=". $_POST['id-detalle'] . "";
+    $delete_destinatario = "DELETE FROM destinatarios WHERE id_destinatario=". $_POST['id-destinatario'] . "";
+    $delete_envios = "DELETE FROM envios WHERE id_envio=". $_POST['id-envio'] . "";
+    $save = $this->db()->query($query);
+    $this->db()->query($delete_destinatario);
+    $this->db()->query($delete_envios);
     return ["status" => $save];
   }
 }

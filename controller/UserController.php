@@ -82,4 +82,10 @@ final class UserController extends ControllerBase {
     $update = $user->update();
     die(json_encode($update));
   }
+
+  public function deleteDetails() {
+    $user = new UserDetails('', $this->adapter);
+    $delete = $user->delete();
+    die(json_encode($delete));
+  }
 }

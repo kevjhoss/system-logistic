@@ -16,7 +16,7 @@ const validateGmail = e => {
 const validatorPassword = e => {
   const input = e.target;
   const span = input.nextElementSibling;
-  span.textContent = "La contrasena debe tener como minimo 5 caracteres";
+  span.textContent = "La contraseña debe tener como minimo 5 caracteres";
   if (input.value.length === 0) span.textContent = "Campo requerido";
 
   if (input.value.length > 5) {
@@ -76,7 +76,7 @@ const validateStandart = e => {
 const validateCP = e => {
   const input = e.target;
   const span = input.nextElementSibling;
-  span.textContent = "El numero de documento debe ser igual a 4";
+  span.textContent = "El codigo postal debe ser igual a 4";
   if (input.value.length === 0) return span.textContent = "Campo requerido";
 
   if (/^[0-9]+$/i.test(input.value) !== true) span.textContent = "Solo se aceptan numeros";
@@ -93,7 +93,7 @@ const validateCP = e => {
 const validatePhone = e => {
   const input = e.target;
   const span = input.nextElementSibling;
-  span.textContent = "El numero de documento debe ser igual a 10";
+  span.textContent = "El numero de telefono debe ser igual o mayor a 8";
   if (input.value.length === 0) return span.textContent = "Campo requerido";
 
   if (/^[0-9]+$/i.test(input.value) !== true) span.textContent = "Solo se aceptan numeros";
