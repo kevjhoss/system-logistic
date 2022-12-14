@@ -52,6 +52,7 @@ const append = (datas, content) => {
     div.classList.add("input-value");
     const input = create("input");
     input.name = key;
+    input.placeholder = key;
     input.value = datas[key];
     input.disabled = true;
     if (key == "numero_documento") {
