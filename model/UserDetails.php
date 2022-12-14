@@ -33,8 +33,7 @@ class UserDetails extends EntityBase {
     while ($row = $result->fetch_object()) {
       $resultSet[] = $row;
     }
-    return $resultSet;
-   
+    return $resultSet ?? null; 
   }
 
   public function save() {

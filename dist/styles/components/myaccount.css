@@ -1,6 +1,6 @@
 #box-account {
   display: grid;
-  grid-template-columns: [m-s]1fr [c-s]1fr [i-s]1fr[c-e] 1fr[m-e];
+  grid-template-columns: [m-s]30em [c-s]1fr [i-s]1fr[c-e] 1fr[m-e];
   row-gap: .5em;
   column-gap: 1em;
   margin-bottom: 2em;

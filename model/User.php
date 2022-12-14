@@ -100,16 +100,16 @@ class User extends EntityBase {
   }
 
   public function update() {
-    $pass_hashed = $this->pass->encriptar($_POST['password']);
+    $pass_hashed = $this->pass->encriptar($_POST['password'] ?? "");
     $data = "UPDATE clientes SET
-              " . $this->opt('nombre_cliente', $_POST['nombre_cliente']) ."
-              " . $this->opt('numero_documento', $_POST['numero_documento']) . "
-              " . $this->opt('direccion', $_POST['direccion']) . "
-              " . $this->opt('localidad', $_POST['localidad']) . "
-              " . $this->opt('provincia', $_POST['provincia']) . "
-              " . $this->opt('codigo_postal', $_POST['codigo_postal']) . "
-              " . $this->opt('telefono', $_POST['telefono']) . "
-              " . $this->opt('correo_electronico', $_POST['correo_electronico']) . "
+              " . $this->opt('nombre_cliente', $_POST['nombre_cliente'] ?? "") ."
+              " . $this->opt('numero_documento', $_POST['numero_documento'] ?? "") . "
+              " . $this->opt('direccion', $_POST['direccion'] ?? "") . "
+              " . $this->opt('localidad', $_POST['localidad'] ?? "") . "
+              " . $this->opt('provincia', $_POST['provincia'] ?? "") . "
+              " . $this->opt('codigo_postal', $_POST['codigo_postal'] ?? "") . "
+              " . $this->opt('telefono', $_POST['telefono'] ?? "") . "
+              " . $this->opt('correo_electronico', $_POST['correo_electronico'] ?? "") . "
               " . $this->opt('password', $pass_hashed);
     $formated = preg_replace("/[,]$/", "", trim($data));
     $query = $formated . "\n WHERE (id_cliente='" . $_POST['id_cliente'] . "');";
