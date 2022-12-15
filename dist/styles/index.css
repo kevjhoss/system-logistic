@@ -24,6 +24,7 @@ body {
   background-position: center center;
   background-attachment: fixed;
   background-size: cover;
+  height: 100%;
 }
 
 /* Navegacion */
@@ -573,6 +574,8 @@ table > .btn-delete {
   margin-top: auto;
   width: 100%;
   background-color: #253442;
+  position: absolute;
+  bottom: 0;
 }
 
 .pie-pagina .linea_1{
