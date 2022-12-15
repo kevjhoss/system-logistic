@@ -20,7 +20,7 @@
             <img src="/dist/images/pago-facil.png" alt="mercado-pago"/>
             <span>Efectivo</span>
         </label>
-        <button id="form-checkout__submit" type="button" class="btn btn-primary btn-block">Pay</button>
+        <button id="form-checkout__submit" type="button" class="btn btn-primary btn-block">PAGAR</button>
     </form>
 </div>
 
@@ -34,7 +34,7 @@
         <button type="button" class="btn-close is-result">
             <?php echo Icons('close', '2.2em', 'hsl(0,100%,50%)')?>
         </button>
-        <p>Transferencia exitosa</p>
+        <p><b>¡Pago realizado con éxito!</b></p>
         <button type="button" class="btn-go-result">IR A MIS ENVIOS</button>
     </div>
 </div>

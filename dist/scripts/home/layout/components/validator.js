@@ -2,7 +2,7 @@ const validateDni = e => {
   const div = e.target.parentNode;
   const input = e.target;
   const span = input.nextElementSibling;
-  span.textContent = "El numero de documento debe ser igual a 8";
+  span.textContent = "El numero de documento debe contener 8 números";
   if (input.value.length === 0) return span.textContent = "Campo requerido";
 
   if (/^[0-9]+$/i.test(input.value) !== true) span.textContent = "Solo se aceptan numeros";
@@ -23,7 +23,7 @@ const validateCP = e => {
   const div = e.target.parentNode;
   const input = e.target;
   const span = input.nextElementSibling;
-  span.textContent = "El numero de documento debe ser igual a 4";
+  span.textContent = "El código postal debe contener 4 números";
   if (input.value.length === 0) return span.textContent = "Campo requerido";
 
   if (/^[0-9]+$/i.test(input.value) !== true) span.textContent = "Solo se aceptan numeros";
@@ -64,12 +64,12 @@ const validatePhone = e => {
   const div = e.target.parentNode;
   const input = e.target;
   const span = input.nextElementSibling;
-  span.textContent = "El numero de celular debe ser igual o mayor a 6";
+  span.textContent = "El teléfono debe contener al menos 8 números";
   if (input.value.length === 0) return span.textContent = "Campo requerido";
 
   if (/^[0-9]+$/i.test(input.value) !== true) span.textContent = "Solo se aceptan numeros";
 
-  if (input.value.length >= 6 && /^[0-9]+$/i.test(input.value)) {
+  if (input.value.length > 7 && /^[0-9]+$/i.test(input.value)) {
     input.textContent = "0";
     div.style.paddingBottom = ".4em";
     span.style.height = "0";
@@ -126,7 +126,7 @@ const validatePassword = e => {
   const div = e.target.parentNode;
   const input = e.target;
   const span = input.nextElementSibling;
-  span.textContent = "La contrasena debe tener como minimo 5 caracteres";
+  span.textContent = "La contraseña debe tener como mínimo 6 caracteres";
   if (input.value.length === 0) span.textContent = "Campo requerido";
 
   if (input.value.length > 5) {

@@ -110,7 +110,7 @@ export const createTable = async () => {
 
       const value = await send.json();
       if (value.status ==  true) {
-        message("success", "alert-success", "EL ENVIO SE BORRO CORRECTAMENTE");
+        message("success", "alert-success", "EL ENVÍO SE BORRÓ CORRECTAMENTE");
         replace(snipper("snipper"), el("section"));
         return renderLayout();
       }

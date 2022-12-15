@@ -1,6 +1,6 @@
 <?php include "./view/components/Icons.php";?>
 <nav>
-  <img src="/dist/images/logo-logistica.png"/>
+  <a href="/index.php?controller=User&action=index"><img src="/dist/images/logo-logistica.png"/></a>
   <ul>
     <li class='active-link'>
       <a href="index.php?controller=User&action=panel" class='panel' >

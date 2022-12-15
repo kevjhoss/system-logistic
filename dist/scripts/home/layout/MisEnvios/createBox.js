@@ -3,10 +3,11 @@ import {createTable} from './createTable.js';
 
 export const renderLayout = async () => {
   const section = create("section");
-  const h2 = create("h2");
-  h2.textContent = "MIS ENVIOS";
+  const h1 = create("h1");
+  h1.classList.add("titulo-principal");
+  h1.textContent = "MIS ENVIOS";
   const table = await createTable();
-  section.appendChild(h2);
+  section.appendChild(h1);
   section.appendChild(table);
   replace(section, el("section"))
 }

@@ -3,14 +3,14 @@
     <div class="box">
       <figure>
         <a href="#">
-          <img src="" alt="Logo SL">
+          <img src="/dist/images/logo-logistica.png" alt="Logo SL">
         </a>
       </figure>
     </div>
     <div class="box">
       <h2>SOBRE NOSOTROS</h2>
       <p>Nos caracterizamos por ser confiables, modernos y dinámicos
-      brindando soluciones logísticas a nivel Nacional</p>
+      brindando soluciones logísticas a nivel nacional.</p>
       <p> Nos apasiona cautivar a nuestros clientes con soluciones a su medida,
       que nos permitan integrarlos a nuestra actividad diaria, generando el
       balance perfecto entre costo logístico y excelencia operativa.</p>
@@ -26,6 +26,6 @@
     </div>
   </div>
   <div class="linea_2">
-    <small>&copy; 2022 <b>System Logistic</b> - Todos los Derechos Reservados.</small>
+    <small>&copy; 2022 <b>System Logistics</b> - Todos los Derechos Reservados.</small>
   </div>
 </footer>

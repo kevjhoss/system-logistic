@@ -2,11 +2,9 @@ import {create, replace, el} from "../components/globalFunctions.js";
 
 export const renderLayout = () => {
   const section = create("section");
-  const h2 = create("h2")
-  h2.textContent = "INICIO"
-  const p = create("p");
-  p.textContent = "Esta es la parte de la pagina con la informacion inicial para el usario";
-  section.appendChild(h2);
-  section.appendChild(p);
-  replace(section, el("section"))
+  const h1 = create("h1");
+  h1.textContent = "¡BIENVENIDO!";
+  h1.classList.add("titulo-principal");
+  section.appendChild(h1);
+  replace(section, el("section"));
 }

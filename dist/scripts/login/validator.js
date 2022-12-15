@@ -16,7 +16,7 @@ const validateGmail = e => {
 const validatorPassword = e => {
   const input = e.target;
   const span = input.nextElementSibling;
-  span.textContent = "La contraseña debe tener como minimo 5 caracteres";
+  span.textContent = "La contraseña debe tener como mínimo 6 caracteres";
   if (input.value.length === 0) span.textContent = "Campo requerido";
 
   if (input.value.length > 5) {
@@ -45,7 +45,7 @@ const validateFullName = e => {
 const validateDni = e => {
   const input = e.target;
   const span = input.nextElementSibling;
-  span.textContent = "El numero de documento debe ser igual a 8";
+  span.textContent = "El documento debe contener 8 números";
   if (input.value.length === 0) return span.textContent = "Campo requerido";
 
   if (/^[0-9]+$/i.test(input.value) !== true) span.textContent = "Solo se aceptan numeros";
@@ -76,7 +76,7 @@ const validateStandart = e => {
 const validateCP = e => {
   const input = e.target;
   const span = input.nextElementSibling;
-  span.textContent = "El codigo postal debe ser igual a 4";
+  span.textContent = "El codigo postal debe contener 4 números";
   if (input.value.length === 0) return span.textContent = "Campo requerido";
 
   if (/^[0-9]+$/i.test(input.value) !== true) span.textContent = "Solo se aceptan numeros";
@@ -93,12 +93,12 @@ const validateCP = e => {
 const validatePhone = e => {
   const input = e.target;
   const span = input.nextElementSibling;
-  span.textContent = "El numero de telefono debe ser igual o mayor a 8";
+  span.textContent = "El numero de telefono debe contener al menos 8 números";
   if (input.value.length === 0) return span.textContent = "Campo requerido";
 
   if (/^[0-9]+$/i.test(input.value) !== true) span.textContent = "Solo se aceptan numeros";
 
-  if (input.value.length === 10 && /^[0-9]+$/i.test(input.value)) {
+  if (input.value.length > 7 && /^[0-9]+$/i.test(input.value)) {
     span.style.height = "0";
     return input.classList.remove("error");
   };

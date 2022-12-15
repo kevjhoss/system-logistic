@@ -12,8 +12,7 @@
 <body>
   <?php include './view/navegation.php'; ?>
   <section>
-    <h2>INICIO</h2>
-    <p>Esta es la parte de la pagina con la informacion inicial para el usario</p>
+    <h1 class="titulo-principal">¡BIENVENIDOS!</h1>
   </section>
 
   <aside>

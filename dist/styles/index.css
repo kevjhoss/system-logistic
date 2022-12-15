@@ -24,7 +24,8 @@ body {
   background-position: center center;
   background-attachment: fixed;
   background-size: cover;
-  height: 100%;
+  display: grid;
+  height: 100vh;
 }
 
 /* Navegacion */
@@ -35,13 +36,19 @@ nav {
   height: 4em;
   /* degradado $*/
   box-shadow: 0 .1em 2.5em hsl(0,0%,0%);
+  grid-column: 1/2;
 }
 
-nav > img {
+nav a  {
   display: block;
   align-self: center;
   margin-left: 1.5em;
   width: 15em;
+}
+
+nav a > img{
+  display: block;
+  width: 100%;
 }
 
 nav > ul {
@@ -95,7 +102,7 @@ ul > li:hover {
 
 /* Snipper Recarga */
 #box-snipper {
-  grid-column: m-s/m-e;
+  grid-column: 1/2;
   display: grid;
   height: 20em;
 }
@@ -415,7 +422,6 @@ table {
   border-radius: 2em;
   width: 80%;
   margin-bottom: 5em;
-  overflow: hidden;
 }
 
 th, td {
@@ -574,8 +580,6 @@ table > .btn-delete {
   margin-top: auto;
   width: 100%;
   background-color: #253442;
-  position: absolute;
-  bottom: 0;
 }
 
 .pie-pagina .linea_1{
@@ -644,4 +648,14 @@ table > .btn-delete {
 
 .pie-pagina .linea_2 small{
   font-size: 13px;
+}
+
+footer{
+  grid-column: 1/2;  
+}
+
+.titulo-principal{
+  margin-left: 100px;
+  font-family: "Open-Sans";
+  font-size: 50px;
 }
